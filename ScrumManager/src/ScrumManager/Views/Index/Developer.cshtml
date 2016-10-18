@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Developer dashboard";
+}
+
+<div class="container" ng-app="developer" ng-controller="developerCtrl">
+    <h3>Developer dashboard</h3>
+    <div class="col-md-4">
+        <h4>Tasks assigned to me</h4>
+        <div>
+            <div ng-repeat="item in items">
+                <a href="#" ng-click="getItemDetails(item.itemId);"><span ng-bind="item.name"></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div>
+            <h4>Task Details</h4>
+            <div ng-show="activeItem.itemId > 0">
+                <div>
+                    <span>Id: {{activeItem.itemId}}</span>
+                </div>
+                <div>
+                    <span>Name: <input type="text" id="" value="{{activeItem.name}}" /></span>
+                </div>
+                <br/>
+                <div>
+                    <button class="btn btn-success">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="col-md-12">
+        <h4>Current sprint backlog</h4>
+        <div>
+
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="col-md-12">
+        <h4>Team backlog</h4>
+        <div>
+
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="col-md-12">
+        <h4>Team members</h4>
+        <div>
+
+        </div>
+    </div>
+</div>
+<script src="~/lib/angularjs/angular.js" asp-append-version="true"></script>
+<script src="~/js/Developer.js" asp-append-version="true"></script>

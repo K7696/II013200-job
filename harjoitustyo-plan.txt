@@ -1,0 +1,63 @@
+
+
+SCRUM manager
+
+1 Sovelluksen tarkoitus
+
+1.1 Asiakkaan taustaa
+
+Asiakasyritys tekee omaa tuotekehitystään scrum:lla, mutta he ylläpitävät projektien tehtäviä 
+excelissä ja ilmoitustaululla, missä on taskit jaettu post-it-lapuilla todo, in progress ja done lohkoihin. 
+Tällä tavalla toki projektien tehtävien tekeminen onnistuu, mutta on vaikea seurata kenellä on mitäkin 
+tehtävänä ja taskien pitäminen ajantasalla on vaikeaa, kun osa työntekijöistä tekee etätyötä. Vaarana 
+on myös post-it-lappujen katoaminen taululta ja jotakin saattaa jäädä tekemättä.
+
+Asiakasyritys tarvitsee ohjelman, jossa voi suunnitella projektien tehtävät ja seurata niiden edistymistä. Lisäksi 
+ohjelma palvelee etätyötä tekeviä siten, että projektin suunnitelmiin ja tehtäviin pääsee käsiksi verkon kautta. 
+Ohjelman kautta nähdään myös, että mitkä tehtävät ovat kenelläkin työstettävinä.
+
+2 Ohjelman tärkeimmät featuret
+
+2.1 Autentikointi
+
+2.2 Käyttäjähallinta
+
+2.3 Projektinhallinta
+
+2.4 Backlog itemien hallinta
+
+3 Teknologiat
+
+3.1 Identityserver
+
+https://github.com/IdentityServer/IdentityServer4.Samples/blob/dev/Quickstarts/2_ResourceOwnerPasswords/src/Api/Startup.cs
+
+https://identityserver.github.io/Documentation/docsv2/overview/simplestOAuth.html
+
+Pitää asentaa Microsoft .NET Core 1.0.1 VS 2015 Tooling Preview 2
+
+Linkki: https://github.com/IdentityServer/IdentityServer4
+
+Quick start: https://identityserver4.readthedocs.io/en/dev/quickstarts/0_overview.html
+
+Conffaus kesken: https://identityserver4.readthedocs.io/en/dev/quickstarts/1_client_credentials.html
+
+Videot: 
+1. https://www.youtube.com/watch?v=wQaOWc_bwpM - How to setup identity server 4
+
+3.2 asp .net core
+https://docs.efproject.net/en/latest/platforms/aspnetcore/new-db.html
+
+
+3.3 Web api
+
+3.4 Kanban board
+
+Quick start: http://docs.webix.com/kanban__kanban_init.html
+
+Libraries:
+
+Kanban board: https://webix.com/kanban/
+
+Kanban Board is a useful tool for visualizing your day-to-day workflow. It's an advanced approach that will help you 
+manage your business process with an emphasis on just-in-time delivery! 
