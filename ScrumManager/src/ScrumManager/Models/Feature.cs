@@ -5,6 +5,7 @@
         #region Properties
 
         public int FeatureId { get; set; }
+        public int ProjectId { get; set; }
 
         #endregion // Properties
     }

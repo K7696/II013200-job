@@ -1,5 +1,5 @@
---temp-output:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\obj\Debug\netstandard1.6\
---out:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\bin\Debug\netstandard1.6\CoreBusinessObjects.dll
+--temp-output:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\obj\Debug\netstandard1.6\
+--out:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\bin\Debug\netstandard1.6\CoreBusinessObjects.dll
 --define:DEBUG
 --define:TRACE
 --define:NETSTANDARD1_6
@@ -56,13 +56,14 @@
 --reference:C:\Users\maikku\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\maikku\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\maikku\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\BaseClass.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Company.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Customer.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Feature.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Item.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Person.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Project.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Story.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Team.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\Properties\AssemblyInfo.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\BaseClass.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Company.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Customer.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Feature.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Item.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Person.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Project.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Sprint.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Story.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Team.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\Properties\AssemblyInfo.cs

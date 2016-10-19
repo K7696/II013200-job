@@ -1,5 +1,5 @@
---temp-output:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\obj\Debug\netcoreapp1.0\
---out:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\bin\Debug\netcoreapp1.0\api.dll
+--temp-output:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\obj\Debug\netcoreapp1.0\
+--out:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\bin\Debug\netcoreapp1.0\api.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -181,11 +181,11 @@
 --reference:C:\Users\maikku\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\maikku\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\maikku\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---reference:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\CoreBusinessObjects\bin\Debug\netstandard1.6\CoreBusinessObjects.dll
---resource:"C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\obj\Debug\netcoreapp1.0\apidotnet-compile.deps.json",api.deps.json
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\Program.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\Startup.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\Controllers\ItemController.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\Controllers\ValuesController.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\Model\ApiContext.cs
-C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\harjoitustyo\ScrumManager\src\api\Model\SeedData.cs
+--reference:C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\CoreBusinessObjects\bin\Debug\netstandard1.6\CoreBusinessObjects.dll
+--resource:"C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\obj\Debug\netcoreapp1.0\apidotnet-compile.deps.json",api.deps.json
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Program.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Startup.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\ItemsController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\PersonsController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Model\ApiContext.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Model\SeedData.cs

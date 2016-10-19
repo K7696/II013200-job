@@ -6,7 +6,12 @@ namespace CoreBusinessObjects.Models
     {
         #region Properties
 
-        public int ObjectId { get; set; }
+        /// <summary>
+        /// Owner company
+        /// </summary>
+        public int CompanyId { get; set; }
+
+        public Guid ObjectId { get; set; }
         public string ShortCode { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

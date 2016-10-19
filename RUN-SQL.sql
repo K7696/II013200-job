@@ -94,6 +94,19 @@ END
 
 GO
 
+-- Drop Sprints
+IF EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_SCHEMA = 'dbo' 
+                 AND  TABLE_NAME = 'Sprints')
+BEGIN
+    
+	DROP TABLE Sprints;
+	
+END
+
+GO
+
 -- Drop Stories
 IF EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
@@ -295,20 +308,52 @@ BEGIN
 	CREATE TABLE [dbo].[Projects](
 		[ProjectId] [int] IDENTITY(1,1) NOT NULL,
 		[CompanyId] [int] NOT NULL,
-		[CustomerId] [int] NULL,
+		[CustomerId] [int] NOT NULL,
 		[StartDate] [datetime2] NULL,
 		[Deadline] [datetime2] NULL,
 		[ObjectId] [uniqueidentifier] NULL,
 		[ShortCode] [nvarchar](500) NULL,
 		[Name] [nvarchar](500) NULL,
 		[Description] [nvarchar](1000) NULL,
-		[Created] [datetime2](7) NULL,
-		[Modified] [datetime2](7) NULL,
-		[CreatorId] [int] NULL,
-		[ModifierId] [int] NULL,
+		[Created] [datetime2](7) NOT NULL,
+		[Modified] [datetime2](7) NOT NULL,
+		[CreatorId] [int] NOT NULL,
+		[ModifierId] [int] NOT NULL,
 	PRIMARY KEY CLUSTERED 
 	(
 		[ProjectId] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	
+END
+
+GO
+
+-- Create Sprints
+IF NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_SCHEMA = 'dbo' 
+                 AND  TABLE_NAME = 'Sprints')
+BEGIN
+    
+	CREATE TABLE [dbo].[Sprints](
+		[SprintId] [int] IDENTITY(1,1) NOT NULL,
+		[CompanyId] [int] NOT NULL,
+		[ProjectId] [int] NOT NULL,
+		[TeamId] [int] NOT NULL,
+		[StartDate] [datetime2] NULL,
+		[EndDate] [datetime2] NULL,
+		[ObjectId] [uniqueidentifier] NULL,
+		[ShortCode] [nvarchar](500) NULL,
+		[Name] [nvarchar](500) NULL,
+		[Description] [nvarchar](1000) NULL,
+		[Created] [datetime2](7) NOT NULL,
+		[Modified] [datetime2](7) NOT NULL,
+		[CreatorId] [int] NOT NULL,
+		[ModifierId] [int] NOT NULL,
+	PRIMARY KEY CLUSTERED 
+	(
+		[SprintId] ASC
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 	

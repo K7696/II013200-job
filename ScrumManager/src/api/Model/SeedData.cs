@@ -287,6 +287,38 @@ namespace CoreBusinessObjects
                 );
             }
 
+            /// <summary>
+            /// Init sprints
+            /// </summary>
+            /// <param name="context"></param>
+            private static void initSprints(ApiContext context)
+            {
+                // Look for any sprints
+                if (context.Sprints.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.Sprints.AddRange(
+                    new Sprint
+                    {
+                        CompanyId = 1,
+                        ProjectId = 1,
+                        TeamId = 1,
+                        StartDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddDays(14), 
+                        ObjectId = Guid.NewGuid(),
+                        ShortCode = "Sprint1",
+                        Name = "Sprint 1",
+                        Description = "Sprint 1",
+                        Created = DateTime.Now,
+                        Modified = DateTime.Now,
+                        CreatorId = 1,
+                        ModifierId = 1
+                    }    
+                );
+            }
+
             private static void initFeatures(ApiContext context)
             {
                 // Look for any features
@@ -491,6 +523,9 @@ namespace CoreBusinessObjects
 
                     // Init projects
                     initProjects(context);
+
+                    // Init sprint
+                    initSprints(context);
 
                     // Init features
                     initFeatures(context);

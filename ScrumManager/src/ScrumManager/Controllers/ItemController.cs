@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using CoreBusinessObjects.Models;
+using System;
+using ScrumManager.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,11 +15,20 @@ namespace ScrumManager.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public JsonResult GetItems()
+        public async System.Threading.Tasks.Task<JsonResult> GetItems()
         {
             List<Item> items = new List<Item>();
-            items.Add(new Item { ItemId = 1, Name = "Task 1" });
-            items.Add(new Item { ItemId = 2, Name = "Task 2" });
+
+            try
+            {
+                string url = "http://localhost:50002/api/items/1";
+                ApiClient<Item> api = new ApiClient<Item>();
+                items = await api.GetList(url);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return Json(items);
         }
@@ -28,13 +39,19 @@ namespace ScrumManager.Controllers
         /// <param name="itemId"></param>
         /// <returns></returns>
         [HttpGet]
-        public JsonResult GetItemDetails(int itemId)
+        public async System.Threading.Tasks.Task<JsonResult> GetItemDetails(int itemId)
         {
-            Item item = new Item
+            Item item = new Item();
+            try
             {
-                ItemId = 1,
-                Name = "Task 2"
-            };
+                string url = "http://localhost:50002/api/items/1/" + itemId.ToString();
+                ApiClient<Item> api = new ApiClient<Item>();
+                item = await api.GetObject(url);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return Json(item);
         }

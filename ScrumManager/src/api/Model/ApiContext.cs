@@ -18,6 +18,7 @@ namespace api.Model
         public DbSet<Item> Items { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<Team> Teams { get; set; }
 
