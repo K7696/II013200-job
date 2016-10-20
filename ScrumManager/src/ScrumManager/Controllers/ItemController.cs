@@ -55,5 +55,26 @@ namespace ScrumManager.Controllers
 
             return Json(item);
         }
+
+        /// <summary>
+        /// Save item details
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public async System.Threading.Tasks.Task<JsonResult> SaveItemDetails(Item item)
+        {
+            try
+            {
+                string url = "http://localhost:50002/api/items/1/" + item.ItemId.ToString();
+                ApiClient<Item> api = new ApiClient<Item>();
+                item = await api.PostObject(item, url, ApiHttpMethod.PUT);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Json(item);
+        }
     }
 }

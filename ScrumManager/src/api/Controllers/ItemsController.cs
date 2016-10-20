@@ -140,7 +140,7 @@ namespace api.Controllers
 
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return BadRequest();
             }           

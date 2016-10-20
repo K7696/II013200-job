@@ -37,6 +37,25 @@ app.controller("developerCtrl", function ($scope, $http) {
         });
     }
 
+    function _saveItemDetails(item) {
+        $http({
+            method: "POST",
+            url: "../../Item/SaveItemDetails/",
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            transformRequest: function (obj) {
+                var str = [];
+                for (var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+            data: item
+        }).then(function mySucces(response) {
+            $scope.activeItem = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
     // #endregion Private methods
 
     // #region Public methods
@@ -44,6 +63,10 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.getItemDetails = function (itemId) {
         _getItemDetails(itemId);
     };
+
+    $scope.saveItemDetails = function (item) {
+        _saveItemDetails(item);
+    }
 
     // #endregion Public methods
 

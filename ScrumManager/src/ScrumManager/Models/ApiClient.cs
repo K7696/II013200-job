@@ -1,13 +1,30 @@
-﻿using System;
+﻿using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace ScrumManager.Models
 {
+    public enum ApiHttpMethod
+    {
+        GET,
+        POST,
+        PUT,
+        DELETE
+    }
+
     public class ApiClient<T>
     {
+        #region Fields
+
+        private string cntType;
+
+        #endregion // Fields
+
         #region Constructors
 
         /// <summary>
@@ -15,12 +32,33 @@ namespace ScrumManager.Models
         /// </summary>
         public ApiClient()
         {
-
+            cntType = "application/json";
         }
 
         #endregion // Constructors
 
-        #region public methods
+        #region Private methods
+
+        /// <summary>
+        /// Get list of object properties
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        /*private List<KeyValuePair<string, string>> getObjectProperties(T item)
+        {
+            var pairs = new List<KeyValuePair<string, string>>();
+
+            foreach (PropertyInfo property in item.GetType().GetProperties())
+            {
+                pairs.Add(new KeyValuePair<string, string>(property.Name, property.GetValue(item).ToString()));
+            }
+
+            return pairs;
+        }*/
+
+        #endregion // Private methods
+
+        #region Public methods
 
         /// <summary>
         /// Get list of items from a web api
@@ -74,6 +112,56 @@ namespace ScrumManager.Models
             return item;
         }
 
+        /// <summary>
+        /// Post object to web api
+        /// </summary>
+        /// <param name="pItem"></param>
+        /// <param name="url"></param>
+        /// <param name="apiHttpMethod"></param>
+        /// <returns></returns>
+        public async Task<T> PostObject(T pItem, string url, ApiHttpMethod apiHttpMethod)
+        {
+            T item = default(T);
+
+            using (var client = new HttpClient())
+            {
+                string body = string.Empty;
+
+                if(apiHttpMethod == ApiHttpMethod.POST ||
+                    apiHttpMethod == ApiHttpMethod.PUT)
+                {
+                    body = Newtonsoft.Json.JsonConvert.SerializeObject(pItem);
+                }
+
+                HttpContent content = new StringContent(body);
+                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(cntType);
+
+                HttpResponseMessage response;
+
+                switch (apiHttpMethod)
+                {
+                    case ApiHttpMethod.POST:
+                            response = client.PostAsync(url, content).Result;
+                        break;
+                    case ApiHttpMethod.PUT:
+                            response = client.PutAsync(url, content).Result;
+                        break;
+                    case ApiHttpMethod.DELETE:
+                            response = client.DeleteAsync(url).Result;
+                        break;
+                    default:
+                        throw new NotSupportedException();
+                }
+           
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    item = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(data);
+                }
+            }
+
+            return item;
+        }
 
         #endregion // Public methods
     }
