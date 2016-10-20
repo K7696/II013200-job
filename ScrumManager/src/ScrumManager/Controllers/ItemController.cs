@@ -10,6 +10,24 @@ namespace ScrumManager.Controllers
 {
     public class ItemController : Controller
     {
+        #region Fields
+
+        private ApiClient<Item> apiClient;
+
+        #endregion // Fields
+
+        #region Constructors
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ItemController()
+        {
+            apiClient = new ApiClient<Item>();
+        }
+
+        #endregion // Constructors
+
         /// <summary>
         /// Get items
         /// </summary>
@@ -22,8 +40,7 @@ namespace ScrumManager.Controllers
             try
             {
                 string url = "http://localhost:50002/api/items/1";
-                ApiClient<Item> api = new ApiClient<Item>();
-                items = await api.GetList(url);
+                items = await apiClient.GetList(url);
             }
             catch (Exception ex)
             {
@@ -45,8 +62,7 @@ namespace ScrumManager.Controllers
             try
             {
                 string url = "http://localhost:50002/api/items/1/" + itemId.ToString();
-                ApiClient<Item> api = new ApiClient<Item>();
-                item = await api.GetObject(url);
+                item = await apiClient.GetObject(url);
             }
             catch (Exception ex)
             {
@@ -66,8 +82,7 @@ namespace ScrumManager.Controllers
             try
             {
                 string url = "http://localhost:50002/api/items/1/" + item.ItemId.ToString();
-                ApiClient<Item> api = new ApiClient<Item>();
-                item = await api.PostObject(item, url, ApiHttpMethod.PUT);
+                item = await apiClient.PostObject(item, url, ApiHttpMethod.PUT);
             }
             catch (Exception ex)
             {
