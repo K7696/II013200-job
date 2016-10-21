@@ -19,7 +19,8 @@
     "Newtonsoft.Json": "9.0.1",
     "Microsoft.EntityFrameworkCore": "1.0.1",
     "CoreBusinessObjects": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1"
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
+    "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1"
   },
 
   "tools": {

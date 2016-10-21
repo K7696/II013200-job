@@ -420,3 +420,9 @@ BEGIN
 END
 
 GO
+
+-- ADD CONSTRAINTS
+
+ALTER TABLE Persons  
+	ADD CONSTRAINT ForeignKey_Person_Team FOREIGN KEY (TeamId) REFERENCES Teams(TeamId)
+GO

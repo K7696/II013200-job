@@ -37,5 +37,21 @@ namespace api.Model
         }
 
         #endregion // Constructors
+
+        #region Protected methods
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Team>()
+                .HasKey(t => t.TeamId);
+
+            modelBuilder.Entity<Person>()
+                .HasOne(p => p.Team)
+                .WithMany(b => b.Persons)
+                .HasForeignKey(p => p.TeamId)
+                .HasConstraintName("ForeignKey_Person_Team");
+        }
+
+        #endregion // Protected methos
     }
 }

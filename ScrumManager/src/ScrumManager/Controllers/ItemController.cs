@@ -13,83 +13,104 @@ namespace ScrumManager.Controllers
         #region Fields
 
         private ApiClient<Item> apiClient;
+        private string url;
 
         #endregion // Fields
 
         #region Constructors
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
         public ItemController()
         {
             apiClient = new ApiClient<Item>();
+            url = "http://localhost:50002/api/items/1";
         }
 
         #endregion // Constructors
 
+        #region Public JSON methods
+
         /// <summary>
-        /// Get items
+        /// Get list
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async System.Threading.Tasks.Task<JsonResult> GetItems()
+        public async System.Threading.Tasks.Task<JsonResult> GetList()
         {
-            List<Item> items = new List<Item>();
+            List<Item> list = new List<Item>();
 
             try
             {
-                string url = "http://localhost:50002/api/items/1";
-                items = await apiClient.GetList(url);
+                list = await apiClient.GetList(url);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return Json(items);
+            return Json(list);
         }
 
         /// <summary>
-        /// Get single item details
+        /// Get
         /// </summary>
-        /// <param name="itemId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public async System.Threading.Tasks.Task<JsonResult> GetItemDetails(int itemId)
+        public async System.Threading.Tasks.Task<JsonResult> Get(int id)
         {
-            Item item = new Item();
+            Item obj = new Item();
             try
             {
-                string url = "http://localhost:50002/api/items/1/" + itemId.ToString();
-                item = await apiClient.GetObject(url);
+                obj = await apiClient.GetObject(url + "/" + id.ToString());
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return Json(item);
+            return Json(obj);
         }
 
         /// <summary>
-        /// Save item details
+        /// Update
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="obj"></param>
         /// <returns></returns>
-        public async System.Threading.Tasks.Task<JsonResult> SaveItemDetails(Item item)
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> Update(Item obj)
         {
             try
             {
-                string url = "http://localhost:50002/api/items/1/" + item.ItemId.ToString();
-                item = await apiClient.PostObject(item, url, ApiHttpMethod.PUT);
+                obj = await apiClient.PostObject(obj, url + "/" + obj.ItemId.ToString(), ApiHttpMethod.PUT);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
-            return Json(item);
+            return Json(obj);
         }
+
+        /// <summary>
+        /// Delete 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        public async System.Threading.Tasks.Task<JsonResult> Delete(Item obj)
+        {
+            try
+            {
+                obj = await apiClient.PostObject(obj, url + "/" + obj.ItemId.ToString(), ApiHttpMethod.DELETE);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Json(null);
+        }
+
+        #endregion // Public JSON methods
     }
 }

@@ -11,6 +11,7 @@ namespace CoreBusinessObjects
         #region Properties
 
         public int TeamId { get; set; }
+        public List<Person> Persons { get; set; }
 
         #endregion // Properties
     }

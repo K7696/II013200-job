@@ -6,18 +6,33 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.items = [];
     $scope.activeItem = {};
 
+    $scope.team = {};
+
     // Init
     (function () {
         _getItems();
+        _getTeam();
     }());
 
     // #region Private methods
+
+    function _getTeam() {
+
+        $http({
+            method: "GET",
+            url: "../../Team/Get/1"
+        }).then(function mySucces(response) {
+            $scope.team = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
 
     function _getItems() {
 
         $http({
             method: "GET",
-            url: "../../Item/GetItems/"
+            url: "../../Item/GetList/"
         }).then(function mySucces(response) {
             $scope.items = response.data;
         }, function myError(response) {
@@ -29,7 +44,7 @@ app.controller("developerCtrl", function ($scope, $http) {
     function _getItemDetails(itemId) {
         $http({
             method: "GET",
-            url: "../../Item/GetItemDetails/?itemId=" + itemId
+            url: "../../Item/Get/?itemId=" + itemId
         }).then(function mySucces(response) {
             $scope.activeItem = response.data;
         }, function myError(response) {
@@ -40,7 +55,7 @@ app.controller("developerCtrl", function ($scope, $http) {
     function _saveItemDetails(item) {
         $http({
             method: "POST",
-            url: "../../Item/SaveItemDetails/",
+            url: "../../Item/Save/",
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             transformRequest: function (obj) {
                 var str = [];

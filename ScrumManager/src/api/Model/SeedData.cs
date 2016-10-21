@@ -515,12 +515,6 @@ namespace CoreBusinessObjects
                     // Init customer
                     initCustomer(context);
 
-                    // Init team
-                    initTeam(context);
-
-                    // Init persons
-                    initPersons(context);
-
                     // Init projects
                     initProjects(context);
 
@@ -535,8 +529,16 @@ namespace CoreBusinessObjects
 
                     // Init items
                     initItems(context);
-                   
+
+                    // Init team
+                    initTeam(context);
+
                     // Finally save data
+                    context.SaveChanges();
+
+                    // Init persons
+                    initPersons(context);
+
                     context.SaveChanges();
                 }
             }

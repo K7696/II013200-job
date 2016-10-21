@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETFramework,Version=v4.5.2/",
-    "signature": "1384b8a9e1cc0e0dab8a0c4f20c80384af7b0aa9"
+    "signature": "5a4a24e21a35d595be6e44c71a357ac81fc4ecda"
   },
   "compilationOptions": {
     "defines": [
@@ -32,7 +32,8 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "angularjs": "1.5.8",
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "9.0.1",
+          "Microsoft.AspNet.WebApi.Client": "5.2.3"
         },
         "compile": {
           "ScrumManager.exe": {}
@@ -94,6 +95,15 @@
         },
         "compile": {
           "lib/net45/Microsoft.AI.ServerTelemetryChannel.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Client/5.2.3": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "System.Net.Http": "4.0.0.0"
+        },
+        "compile": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/1.0.1": {
@@ -1083,6 +1093,11 @@
           ".NETFramework/v4.5.2/System.Core.dll": {}
         }
       },
+      "System.Net.Http/4.0.0.0": {
+        "compile": {
+          ".NETFramework/v4.5.2/System.Net.Http.dll": {}
+        }
+      },
       "System.Security/4.0.0.0": {
         "compile": {
           ".NETFramework/v4.5.2/System.Security.dll": {}
@@ -1106,11 +1121,6 @@
       "System.IO.Compression/4.0.0.0": {
         "compile": {
           ".NETFramework/v4.5.2/System.IO.Compression.dll": {}
-        }
-      },
-      "System.Net.Http/4.0.0.0": {
-        "compile": {
-          ".NETFramework/v4.5.2/System.Net.Http.dll": {}
         }
       },
       "System.IdentityModel/4.0.0.0": {
@@ -1157,7 +1167,8 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "angularjs": "1.5.8",
-          "Newtonsoft.Json": "9.0.1"
+          "Newtonsoft.Json": "9.0.1",
+          "Microsoft.AspNet.WebApi.Client": "5.2.3"
         },
         "runtime": {
           "ScrumManager.exe": {}
@@ -1219,6 +1230,15 @@
         },
         "runtime": {
           "lib/net45/Microsoft.AI.ServerTelemetryChannel.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Client/5.2.3": {
+        "dependencies": {
+          "Newtonsoft.Json": "9.0.1",
+          "System.Net.Http": "4.0.0.0"
+        },
+        "runtime": {
+          "lib/net45/System.Net.Http.Formatting.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/1.0.1": {
@@ -2104,12 +2124,12 @@
       "mscorlib/4.0.0.0": {},
       "System/4.0.0.0": {},
       "System.Core/4.0.0.0": {},
+      "System.Net.Http/4.0.0.0": {},
       "System.Security/4.0.0.0": {},
       "System.Xml/4.0.0.0": {},
       "System.Xml.Linq/4.0.0.0": {},
       "System.ComponentModel.DataAnnotations/4.0.0.0": {},
       "System.IO.Compression/4.0.0.0": {},
-      "System.Net.Http/4.0.0.0": {},
       "System.IdentityModel/4.0.0.0": {},
       "System.Net.Http.WebRequest/4.0.0.0": {},
       "System.ServiceModel/4.0.0.0": {},
@@ -2162,6 +2182,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-cxvFUPc83qaPjvcr0cAT8EElPVvg+hSzCmCxSPEXRt5PnPGTafv/ra4sw8na/D3fQHmnMLuj1R0mMZiOLnSw9A=="
+    },
+    "Microsoft.AspNet.WebApi.Client/5.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3kiI8peSXbXHDDrRuo+QaX0iCEVRe0nvn2dBDRw656uPX32UalbBlSIDUDlJxu05eau4tnuhsikiUuugvvoUoQ=="
     },
     "Microsoft.AspNetCore.Antiforgery/1.0.1": {
       "type": "package",
@@ -2723,6 +2748,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "System.Net.Http/4.0.0.0": {
+      "type": "referenceassembly",
+      "serviceable": false,
+      "sha512": ""
+    },
     "System.Security/4.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
@@ -2744,11 +2774,6 @@
       "sha512": ""
     },
     "System.IO.Compression/4.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Net.Http/4.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

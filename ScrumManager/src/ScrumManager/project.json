@@ -19,7 +19,8 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "angularjs": "1.5.8",
-    "Newtonsoft.Json": "9.0.1"
+    "Newtonsoft.Json": "9.0.1",
+    "Microsoft.AspNet.WebApi.Client": "5.2.3"
   },
 
   "tools": {

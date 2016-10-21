@@ -20,6 +20,7 @@
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.ApplicationInsights.DependencyCollector\2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.ApplicationInsights.PerfCounterCollector\2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel\2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNet.WebApi.Client\5.2.3\lib\net45\System.Net.Http.Formatting.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.1\lib\net451\Microsoft.AspNetCore.Antiforgery.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Authorization\1.0.0\lib\net451\Microsoft.AspNetCore.Authorization.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Cors\1.0.0\lib\net451\Microsoft.AspNetCore.Cors.dll
@@ -148,12 +149,12 @@
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\mscorlib.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Core.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Security.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Xml.Linq.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.ComponentModel.DataAnnotations.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.IO.Compression.dll
---reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.IdentityModel.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Net.Http.WebRequest.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.ServiceModel.dll
@@ -162,6 +163,7 @@
 --resource:"C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\obj\Debug\net452\ScrumManagerdotnet-compile.deps.json",ScrumManager.deps.json
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Program.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Startup.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\CompanyController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\CustomerController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\FeatureController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\HomeController.cs
@@ -169,7 +171,9 @@ C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumMana
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\ItemController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\PersonController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\ProjectController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\SprintController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\StoryController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Controllers\TeamController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Models\ApiClient.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Models\BaseClass.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\ScrumManager\Models\Company.cs

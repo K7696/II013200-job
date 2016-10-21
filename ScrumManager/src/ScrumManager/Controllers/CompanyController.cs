@@ -4,27 +4,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ScrumManager.Models;
-using CoreBusinessObjects.Models;
+using CoreBusinessObjects;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ScrumManager.Controllers
 {
-    public class FeatureController : Controller
+    public class CompanyController : Controller
     {
         #region Fields
 
-        private ApiClient<Feature> apiClient;
+        private ApiClient<Company> apiClient;
         private string url;
 
         #endregion // Fields
 
         #region Constructors
 
-        public FeatureController()
+        public CompanyController()
         {
-            apiClient = new ApiClient<Feature>();
-            url = "http://localhost:50002/api/features/1";
+            apiClient = new ApiClient<Company>();
+            url = "http://localhost:50002/api/companies/1";
         }
 
         #endregion // Constructors
@@ -38,7 +38,7 @@ namespace ScrumManager.Controllers
         [HttpGet]
         public async System.Threading.Tasks.Task<JsonResult> GetList()
         {
-            List<Feature> list = new List<Feature>();
+            List<Company> list = new List<Company>();
 
             try
             {
@@ -60,7 +60,7 @@ namespace ScrumManager.Controllers
         [HttpGet]
         public async System.Threading.Tasks.Task<JsonResult> Get(int id)
         {
-            Feature obj = new Feature();
+            Company obj = new Company();
             try
             {
                 obj = await apiClient.GetObject(url + "/" + id.ToString());
@@ -79,11 +79,11 @@ namespace ScrumManager.Controllers
         /// <param name="obj"></param>
         /// <returns></returns>
         [HttpPost]
-        public async System.Threading.Tasks.Task<JsonResult> Update(Feature obj)
+        public async System.Threading.Tasks.Task<JsonResult> Update(Company obj)
         {
             try
             {
-                obj = await apiClient.PostObject(obj, url + "/" + obj.FeatureId.ToString(), ApiHttpMethod.PUT);
+                obj = await apiClient.PostObject(obj, url + "/" + obj.CompanyId.ToString(), ApiHttpMethod.PUT);
             }
             catch (Exception ex)
             {
@@ -99,11 +99,11 @@ namespace ScrumManager.Controllers
         /// <param name="obj"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async System.Threading.Tasks.Task<JsonResult> Delete(Feature obj)
+        public async System.Threading.Tasks.Task<JsonResult> Delete(Company obj)
         {
             try
             {
-                obj = await apiClient.PostObject(obj, url + "/" + obj.FeatureId.ToString(), ApiHttpMethod.DELETE);
+                obj = await apiClient.PostObject(obj, url + "/" + obj.CompanyId.ToString(), ApiHttpMethod.DELETE);
             }
             catch (Exception ex)
             {

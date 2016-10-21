@@ -1,10 +1,8 @@
-﻿using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Net.Http;
-using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ScrumManager.Models
@@ -95,7 +93,7 @@ namespace ScrumManager.Models
         {
             T item = default(T);
 
-            using (HttpClient client = new HttpClient())
+            /*using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -107,6 +105,14 @@ namespace ScrumManager.Models
                     var data = await response.Content.ReadAsStringAsync();
                     item = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(data);
                 }
+            }*/
+
+            using (var client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                var json = client.DownloadString(url);
+                //var serializer = new JavaScriptSerializer();
+                item = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
             }
 
             return item;
