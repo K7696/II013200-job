@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 using api.Model;
 using Microsoft.EntityFrameworkCore;
 using CoreBusinessObjects.MvcMovie.Models;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Newtonsoft.Json;
+using System.Buffers;
 
 namespace api
 {
@@ -44,7 +47,15 @@ namespace api
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc();
+            // HUOMIO: lisätty tämä, että ei tule virhettä Self referencing loop detected for property
+            services.AddMvc(options =>
+            {
+                options.OutputFormatters.Clear();
+                options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings()
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                }, ArrayPool<char>.Shared));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

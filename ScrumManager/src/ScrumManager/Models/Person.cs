@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace CoreBusinessObjects.Models
 {
-    public enum Roles
+   /* public enum Roles
     {
         Developer = 1,
         ProductOwner = 2,
         ScrumMaster = 3,
         Test = 4
-    }
+    }*/
 
     public class Person : BaseClass
     {

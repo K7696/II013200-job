@@ -94,17 +94,19 @@ namespace api.Controllers
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
         [HttpGet("{teamId}")]
+        [Produces("application/json")]
         public IActionResult Get(int companyId, int teamId)
         {
             try
             {
                 var result = context.Teams
                 .Where(x => x.CompanyId == companyId && x.TeamId == teamId)
-                .Include(p => p.Persons)
-                .FirstOrDefault();
+                .Include(p => p.Persons);
 
-                if (result != null)
-                    return Ok(result);
+                var team = result.FirstOrDefault();
+
+                if (team != null)
+                    return Ok(team);
             }
             catch (Exception ex)
             {
