@@ -16,6 +16,71 @@ namespace CoreBusinessObjects
         {
             #region Private seed methods
 
+
+            /// <summary>
+            /// Init roles
+            /// </summary>
+            /// <param name="context"></param>
+            private static void initRoles(ApiContext context)
+            {
+                // Look for any Role
+                if (context.Roles.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                context.Roles.AddRange(
+                   new Role
+                   {
+                       ObjectId = Guid.NewGuid(),
+                       CompanyId = 1,
+                       ShortCode = "",
+                       Name = "Developer",
+                       Description = "",
+                       Created = DateTime.Now,
+                       Modified = DateTime.Now,
+                       CreatorId = 1,
+                       ModifierId = 1
+                   },
+                   new Role
+                   {
+                       ObjectId = Guid.NewGuid(),
+                       CompanyId = 1,
+                       ShortCode = "",
+                       Name = "Product owner",
+                       Description = "",
+                       Created = DateTime.Now,
+                       Modified = DateTime.Now,
+                       CreatorId = 1,
+                       ModifierId = 1
+                   },
+                   new Role
+                   {
+                       ObjectId = Guid.NewGuid(),
+                       CompanyId = 1,
+                       ShortCode = "",
+                       Name = "Scrum master",
+                       Description = "",
+                       Created = DateTime.Now,
+                       Modified = DateTime.Now,
+                       CreatorId = 1,
+                       ModifierId = 1
+                   },
+                   new Role
+                   {
+                       ObjectId = Guid.NewGuid(),
+                       CompanyId = 1,
+                       ShortCode = "",
+                       Name = "Tester",
+                       Description = "",
+                       Created = DateTime.Now,
+                       Modified = DateTime.Now,
+                       CreatorId = 1,
+                       ModifierId = 1
+                   }
+                );
+            }
+
             /// <summary>
             /// Init company
             /// </summary>
@@ -509,6 +574,9 @@ namespace CoreBusinessObjects
                 using (var context = new ApiContext(
                     serviceProvider.GetRequiredService<DbContextOptions<ApiContext>>()))
                 {
+                    // Init roles
+                    initRoles(context);
+
                     // Init company
                     initCompany(context);
 

@@ -17,7 +17,7 @@ namespace api.Controllers
 
         private ApiContext context;
 
-        #endregion // Fields
+        #endregion Fields
 
         #region Constructors
 
@@ -30,7 +30,7 @@ namespace api.Controllers
             context = ctx;
         }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         #region Private methods
 
@@ -69,7 +69,7 @@ namespace api.Controllers
             person.ModifierId = value.ModifierId;
         }
 
-        #endregion // Private methods
+        #endregion Private methods
 
 
         #region Get methods

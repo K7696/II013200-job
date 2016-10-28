@@ -5,14 +5,6 @@ using System.Threading.Tasks;
 
 namespace CoreBusinessObjects.Models
 {
-    public enum Roles
-    {
-        Developer = 1,
-        ProductOwner = 2,
-        ScrumMaster = 3,
-        Test = 4
-    }
-
     public class Person : BaseClass
     {
         #region Properties
@@ -22,9 +14,13 @@ namespace CoreBusinessObjects.Models
         public string Lastname { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int RoleId { get; set; }
         public string Phonenumber { get; set; }
 
+        // Role
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
+
+        // Team
         public int TeamId { get; set; }
         public Team Team { get; set; }
 

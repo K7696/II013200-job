@@ -21,8 +21,9 @@ namespace api.Model
         public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
-        #endregion // Properties
+        #endregion Properties
 
         #region Constructors
 
@@ -36,7 +37,7 @@ namespace api.Model
 
         }
 
-        #endregion // Constructors
+        #endregion Constructors
 
         #region Protected methods
 
@@ -45,13 +46,16 @@ namespace api.Model
             modelBuilder.Entity<Team>()
                 .HasKey(t => t.TeamId);
 
+            modelBuilder.Entity<Role>()
+                .HasKey(r => r.RoleId);
+
             modelBuilder.Entity<Person>()
-                .HasOne(p => p.Team)
-                .WithMany(b => b.Persons)
-                .HasForeignKey(p => p.TeamId)
-                .HasConstraintName("ForeignKey_Person_Team");
+               .HasOne(p => p.Team)
+               .WithMany(b => b.Persons)
+               .HasForeignKey(p => p.TeamId)
+               .HasConstraintName("ForeignKey_Person_Role");
         }
 
-        #endregion // Protected methos
+        #endregion Protected methos
     }
 }

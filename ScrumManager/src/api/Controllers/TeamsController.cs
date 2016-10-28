@@ -100,8 +100,8 @@ namespace api.Controllers
             try
             {
                 var result = context.Teams
-                .Where(x => x.CompanyId == companyId && x.TeamId == teamId)
-                .Include(p => p.Persons);
+                    .Where(x => x.CompanyId == companyId && x.TeamId == teamId)
+                        .Include(x => x.Persons);
 
                 var team = result.FirstOrDefault();
 

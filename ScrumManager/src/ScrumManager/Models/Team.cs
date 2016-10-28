@@ -14,5 +14,10 @@ namespace CoreBusinessObjects
         public List<Person> Persons { get; set; }
 
         #endregion // Properties
+
+        public Team()
+        {
+            Persons = new List<Person>();
+        }
     }
 }

@@ -94,6 +94,19 @@ END
 
 GO
 
+-- Drop Roles
+IF EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_SCHEMA = 'dbo' 
+                 AND  TABLE_NAME = 'Roles')
+BEGIN
+    
+	DROP TABLE Roles;
+	
+END
+
+GO
+
 -- Drop Sprints
 IF EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
@@ -329,6 +342,34 @@ END
 
 GO
 
+-- Create Roles
+IF NOT EXISTS (SELECT * 
+                 FROM INFORMATION_SCHEMA.TABLES 
+                 WHERE TABLE_SCHEMA = 'dbo' 
+                 AND  TABLE_NAME = 'Roles')
+BEGIN
+    
+	CREATE TABLE [dbo].[Roles](
+		[RoleId] [int] IDENTITY(1,1) NOT NULL,
+		[CompanyId] [int] NOT NULL,
+		[ObjectId] [uniqueidentifier] NULL,
+		[ShortCode] [nvarchar](500) NULL,
+		[Name] [nvarchar](500) NULL,
+		[Description] [nvarchar](1000) NULL,
+		[Created] [datetime2](7) NOT NULL,
+		[Modified] [datetime2](7) NOT NULL,
+		[CreatorId] [int] NOT NULL,
+		[ModifierId] [int] NOT NULL,
+	PRIMARY KEY CLUSTERED 
+	(
+		[RoleId] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	
+END
+
+GO
+
 -- Create Sprints
 IF NOT EXISTS (SELECT * 
                  FROM INFORMATION_SCHEMA.TABLES 
@@ -426,3 +467,15 @@ GO
 ALTER TABLE Persons  
 	ADD CONSTRAINT ForeignKey_Person_Team FOREIGN KEY (TeamId) REFERENCES Teams(TeamId)
 GO
+
+ALTER TABLE Persons  
+	ADD CONSTRAINT ForeignKey_Person_Role FOREIGN KEY (RoleId) REFERENCES Roles(RoleId)
+GO
+
+
+
+
+
+
+
+

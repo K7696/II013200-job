@@ -2,16 +2,30 @@
 
 app.controller("developerCtrl", function ($scope, $http) {
     
-    // Init
+    // Init lists
     $scope.items = [];
-    $scope.activeItem = {};
+    $scope.stories = [];
 
+    // Init objects
+    $scope.user = {};
+    $scope.activeItem = {};
     $scope.team = {};
+
+    // Init buttons
+    $scope.viewMembersButton = false;
+    $scope.hideMembersButton = false;
+    $scope.viewProductBacklogButton = false;
+    $scope.hideProductBacklogButton = false;
 
     // Init
     (function () {
-        _getItems();
+        _getUser();
+        _getItems();        
         _getTeam();
+
+        $scope.viewMembersButton = true;
+        $scope.viewProductBacklogButton = true;
+
     }());
 
     // #region Private methods
@@ -41,10 +55,23 @@ app.controller("developerCtrl", function ($scope, $http) {
 
     }
 
+    function _getStories() {
+
+        $http({
+            method: "GET",
+            url: "../../Story/GetList/"
+        }).then(function mySucces(response) {
+            $scope.stories = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+
+    }
+
     function _getItemDetails(itemId) {
         $http({
             method: "GET",
-            url: "../../Item/Get/?itemId=" + itemId
+            url: "../../Item/Get/" + itemId
         }).then(function mySucces(response) {
             $scope.activeItem = response.data;
         }, function myError(response) {
@@ -71,6 +98,17 @@ app.controller("developerCtrl", function ($scope, $http) {
         });
     }
 
+    function _getUser() {
+        $http({
+            method: "GET",
+            url: "../../Person/Get/1"
+        }).then(function mySucces(response) {
+            $scope.user = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
     // #endregion Private methods
 
     // #region Public methods
@@ -81,7 +119,31 @@ app.controller("developerCtrl", function ($scope, $http) {
 
     $scope.saveItemDetails = function (item) {
         _saveItemDetails(item);
-    }
+    };
+
+    $scope.getTeam = function () {
+        _getTeam();
+
+        $scope.viewMembersButton = false;
+        $scope.hideMembersButton = true;
+    };
+
+    $scope.hideTeam = function () {
+        $scope.viewMembersButton = true;
+        $scope.hideMembersButton = false;
+    };
+
+    $scope.getProductBacklog = function () {
+        _getStories();
+
+        $scope.viewProductBacklogButton = false;
+        $scope.hideProductBacklogButton = true;
+    };
+
+    $scope.hideProductBacklog = function () {
+        $scope.viewProductBacklogButton = true;
+        $scope.hideProductBacklogButton = false;
+    };
 
     // #endregion Public methods
 

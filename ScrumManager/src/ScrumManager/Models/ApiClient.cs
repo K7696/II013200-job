@@ -93,7 +93,7 @@ namespace ScrumManager.Models
         {
             T item = default(T);
 
-            /*using (HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -105,15 +105,15 @@ namespace ScrumManager.Models
                     var data = await response.Content.ReadAsStringAsync();
                     item = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(data);
                 }
-            }*/
+            }
 
-            using (var client = new WebClient())
+            /*using (var client = new WebClient())
             {
                 client.Encoding = Encoding.UTF8;
                 var json = client.DownloadString(url);
                 //var serializer = new JavaScriptSerializer();
                 item = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
-            }
+            }*/
 
             return item;
         }
