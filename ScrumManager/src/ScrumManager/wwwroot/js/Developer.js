@@ -23,10 +23,16 @@ app.directive('taskDialog', function () {
         transclude: true,
         link: function (scope) {
 
-           /* $(".taskBtn").click(function () {
-                alert("");
-                $("#task-modal").modal();
-            });*/
+        }
+    };
+});
+
+app.directive('storyDialog', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '../../directives/story-dialog.html',
+        transclude: true,
+        link: function (scope) {
 
         }
     };
@@ -40,8 +46,14 @@ app.controller("developerCtrl", function ($scope, $http) {
 
     // Init objects
     $scope.me = {};
+    $scope.myRemainingWork = 0;
     $scope.user = {};
     $scope.activeItem = {};
+    $scope.newItem = false;
+    $scope.editItem = false;
+    $scope.activeStory = {};
+    $scope.newStory = false;
+    $scope.editStory = false;
     $scope.team = {};
 
     // Init buttons
@@ -98,6 +110,17 @@ app.controller("developerCtrl", function ($scope, $http) {
         });
     }
 
+    function _myRemainingWork() {
+
+        var remainingWork = 0;
+
+        angular.forEach($scope.items, function (value, key) {
+            remainingWork += parseFloat(value.workLeft);
+        });
+
+        $scope.myRemainingWork = remainingWork;
+    }
+
     function _getItems() {
 
         $http({
@@ -105,6 +128,9 @@ app.controller("developerCtrl", function ($scope, $http) {
             url: "../../Item/GetList/"
         }).then(function mySucces(response) {
             $scope.items = response.data;
+
+            _myRemainingWork();
+
         }, function myError(response) {
             console.log(response.statusText);
         });
@@ -141,7 +167,42 @@ app.controller("developerCtrl", function ($scope, $http) {
             url: "../../Item/Update/",
             data: $scope.activeItem
         }).then(function mySucces(response) {
-            $scope.activeItem = response.data;
+            _getItems();
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _saveItem() {
+        $http({
+            method: "POST",
+            url: "../../Item/Add/",
+            data: $scope.activeItem
+        }).then(function mySucces(response) {
+            _getItems();
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _getStoryDetails(storyId) {
+        $http({
+            method: "GET",
+            url: "../../Story/Get/" + storyId
+        }).then(function mySucces(response) {
+            $scope.activeStory = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _saveStoryDetails() {
+        $http({
+            method: "POST",
+            url: "../../Story/Update/",
+            data: $scope.activeStory
+        }).then(function mySucces(response) {
+            _getStories();
         }, function myError(response) {
             console.log(response.statusText);
         });
@@ -171,6 +232,9 @@ app.controller("developerCtrl", function ($scope, $http) {
     };
 
     $scope.getItemDetails = function (itemId) {
+        
+        $scope.editItem = true;
+        $scope.newItem = false;
 
         // todo: find new way to handle events
         $("#task-modal").modal();
@@ -178,8 +242,40 @@ app.controller("developerCtrl", function ($scope, $http) {
         _getItemDetails(itemId);
     };
 
+    $scope.addNewItem = function (storyId) {
+
+        $scope.editItem = false;
+        $scope.newItem = true;
+
+        $scope.activeItem = {
+            storyId : storyId
+        };
+
+        // todo: find new way to handle events
+        $("#task-modal").modal();
+    };
+
     $scope.saveItemDetails = function () {
         _saveItemDetails();
+    };
+
+    $scope.addItem = function () {
+        _saveItem();
+    };
+
+    $scope.getStoryDetails = function (storyId) {
+
+        $scope.editStory = true;
+        $scope.newStory = false;
+
+        // todo: find new way to handle events
+        $("#story-modal").modal();
+
+        _getStoryDetails(storyId);
+    };
+
+    $scope.saveStoryDetails = function () {
+        _saveStoryDetails();
     };
 
     $scope.getTeam = function () {

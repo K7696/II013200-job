@@ -12,6 +12,7 @@
     </div>
     <div class="col-md-12">
         <h4>My tasks</h4>
+        <p>Remaining work: <span ng-bind="myRemainingWork"></span> h</p>
         <task-dialog></task-dialog>
         <div>
             <table class="table table-hover">
@@ -68,6 +69,7 @@
         <div>
             <button data-toggle="collapse" ng-show="viewProductBacklogButton" ng-click="getProductBacklog();" data-target="#backlog">View product backlog</button>
             <button data-toggle="collapse" ng-show="hideProductBacklogButton" ng-click="hideProductBacklog();" data-target="#backlog">Hide product backlog</button>
+            <story-dialog></story-dialog>
         </div>
         <div id="backlog" class="collapse">
             <table class="table table-hover">
@@ -87,7 +89,7 @@
                             <button type="button" ng-click="getStoryDetails(story.storyId);" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-edit"></span> Edit
                             </button>
-                            <button type="button" class="btn btn-default btn-sm">
+                            <button type="button" ng-click="addNewItem(story.storyId);" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus"></span> New task
                             </button>
                         </td>

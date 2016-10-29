@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using api.Model;
 using CoreBusinessObjects.Models;
@@ -32,6 +31,40 @@ namespace api.Controllers
 
         #endregion Constructors
 
+        #region Private methods
+
+        /// <summary>
+        /// Get story
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="storyId"></param>
+        /// <returns></returns>
+        private IQueryable<Story> getStory(int companyId, int storyId)
+        {
+            var result = context.Stories
+                .Where(x => x.CompanyId == companyId && x.StoryId == storyId);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Map story properties for updating the story
+        /// </summary>
+        /// <param name="story"></param>
+        /// <param name="value"></param>
+        private void mapStoryUpdate(Story story, Story value)
+        {
+            story.Name = value.Name;
+            story.ShortCode = value.ShortCode;
+            story.Description = value.Description;
+            story.AcceptanceCriteria = value.AcceptanceCriteria;
+            story.ModifierId = value.ModifierId;
+            story.Priority = value.Priority;
+            story.Modified = DateTime.Now;
+        }
+
+        #endregion Private methods
+
         #region Get methods
 
         // GET: api/stories/1
@@ -49,6 +82,148 @@ namespace api.Controllers
             return result;
         }
 
+        // GET: api/stories/1/2
+        /// <summary>
+        /// Get a story
+        /// </summary>
+        /// <param name="companyId">Company Id</param>
+        /// <param name="storyId">Story Id</param>
+        /// <returns></returns>
+        /// <statusCode="200">Ok</statusCode>
+        /// <statusCode="400">Bad request</statusCode>
+        /// <statusCode="404">Not found</statusCode>
+        [HttpGet("{storyId}")]
+        public IActionResult Get(int companyId, int storyId)
+        {
+            try
+            {
+                var result = context.Stories
+                .Where(x => x.CompanyId == companyId && x.StoryId == storyId)
+                .FirstOrDefault();
+
+                if (result != null)
+                    return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return NotFound();
+        }
+
         #endregion Get methods
+
+        #region Data altering
+
+        // POST: api/stories/1
+        /// <summary>
+        /// Add a new story
+        /// </summary>
+        /// <param name="companyid"></param>
+        /// <param name="value"></param>
+        /// <returns>Created entity</returns>
+        /// <statusCode="200">Ok</statusCode>
+        /// <statusCode="400">Bad request</statusCode>
+        [HttpPost]
+        public IActionResult Post(int companyid, [FromBody]Story value)
+        {
+            try
+            {
+                context.Stories.Add(value);
+                context.SaveChanges();
+
+                var result = getStory(companyid, value.StoryId)
+                    .FirstOrDefault();
+
+                if (result != null)
+                    return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
+        }
+
+        // PUT: api/stories/1/2
+        /// <summary>
+        /// Update a story
+        /// </summary>
+        /// <param name="companyId">Company Id</param>
+        /// <param name="id">Story Id</param>
+        /// <param name="value">Story entity</param>
+        /// <returns>Updated entity</returns>
+        /// <statusCode="200">Ok</statusCode>
+        /// <statusCode="400">Bad request</statusCode>
+        /// <statusCode="404">Not found</statusCode>
+        [HttpPut("{id}")]
+        public IActionResult PUT(int companyId, int id, [FromBody]Story value)
+        {
+            try
+            {
+                // This method is only for updating data
+                if (id < 1)
+                    return BadRequest();
+
+                var result = getStory(companyId, id)
+                    .FirstOrDefault();
+
+                if (result == null)
+                    return NotFound();
+
+                mapStoryUpdate(result, value);
+
+                context.SaveChanges();
+
+                var updatedResult = getStory(companyId, id)
+                    .FirstOrDefault();
+
+                if (updatedResult != null)
+                    return Ok(updatedResult);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return BadRequest();
+        }
+
+        // DELETE: api/stories/1/2
+        /// <summary>
+        /// Delete a story
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <param name="id"></param>
+        /// <returns>StatusCode</returns>
+        /// <statusCode="200">Ok</statusCode>
+        /// <statusCode="400">Bad request</statusCode>
+        /// <statusCode="404">Not found</statusCode>
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int companyId, int id)
+        {
+            try
+            {
+                var result = getStory(companyId, id)
+                    .FirstOrDefault();
+
+                if (result == null)
+                    return NotFound();
+
+                context.Stories.Remove(result);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
+
+        #endregion Data altering
     }
 }

@@ -72,6 +72,36 @@ namespace ScrumManager.Controllers
         }
 
         /// <summary>
+        /// Add
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> Add([FromBody]Item obj)
+        {
+            try
+            {
+                // Add other properties
+                obj.FeatureId = 1;
+                obj.ProjectId = 1;
+                obj.CompanyId = 1;
+                obj.ObjectId = Guid.NewGuid();
+                obj.Created = DateTime.Now;
+                obj.Modified = DateTime.Now;
+                obj.CreatorId = 1;
+                obj.ModifierId = 1;
+
+                obj = await apiClient.PostObject(obj, url, ApiHttpMethod.POST);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Json(obj);
+        }
+
+        /// <summary>
         /// Update
         /// </summary>
         /// <param name="obj"></param>
