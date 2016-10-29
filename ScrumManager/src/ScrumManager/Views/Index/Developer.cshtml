@@ -5,12 +5,14 @@
 <div class="container" ng-app="developer" ng-controller="developerCtrl">
     <h3>Developer dashboard - <small>Welcome <span ng-bind="user.firstname"></span>&nbsp;<span ng-bind="user.lastname"></span></small></h3>
     <div>
-        <button type="button" class="btn btn-default btn-sm">
+        <button type="button" id="accountBtn" ng-click="getMyDetails();" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-edit"></span> Edit my account
         </button>
+        <user-dialog></user-dialog>
     </div>
     <div class="col-md-12">
         <h4>My tasks</h4>
+        <task-dialog></task-dialog>
         <div>
             <table class="table table-hover">
                 <thead>
@@ -26,7 +28,7 @@
                 <tbody>
                     <tr ng-repeat="item in items">
                         <td>
-                            <button type="button" ng-click="getItemDetails(item.itemId);" class="btn btn-default btn-sm">
+                            <button type="button" ng-click="getItemDetails(item.itemId);" class="btn btn-default btn-sm taskBtn">
                                 <span class="glyphicon glyphicon-edit"></span> Edit
                             </button>
                         </td>

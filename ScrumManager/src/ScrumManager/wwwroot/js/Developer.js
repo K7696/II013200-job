@@ -1,5 +1,37 @@
 ﻿var app = angular.module("developer", []);
 
+
+app.directive('userDialog', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '../../directives/user-dialog.html',
+        transclude: true,
+        link: function (scope) {
+            
+            $("#accountBtn").click(function () {
+                $("#user-modal").modal();
+            });
+
+        }
+    };
+});
+
+app.directive('taskDialog', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '../../directives/task-dialog.html',
+        transclude: true,
+        link: function (scope) {
+
+           /* $(".taskBtn").click(function () {
+                alert("");
+                $("#task-modal").modal();
+            });*/
+
+        }
+    };
+});
+
 app.controller("developerCtrl", function ($scope, $http) {
     
     // Init lists
@@ -7,6 +39,7 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.stories = [];
 
     // Init objects
+    $scope.me = {};
     $scope.user = {};
     $scope.activeItem = {};
     $scope.team = {};
@@ -29,6 +62,29 @@ app.controller("developerCtrl", function ($scope, $http) {
     }());
 
     // #region Private methods
+
+    function _getMyDetails() {
+        $http({
+            method: "GET",
+            url: "../../Person/Get/1"
+        }).then(function mySucces(response) {
+            $scope.me = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _saveMyDetails() {
+        $http({
+            method: "POST",
+            url: "../../Person/UPDATE/",
+            data: $scope.me
+        }).then(function mySucces(response) {
+            $scope.me = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
 
     function _getTeam() {
 
@@ -79,18 +135,11 @@ app.controller("developerCtrl", function ($scope, $http) {
         });
     }
 
-    function _saveItemDetails(item) {
+    function _saveItemDetails() {
         $http({
             method: "POST",
-            url: "../../Item/Save/",
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            transformRequest: function (obj) {
-                var str = [];
-                for (var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                return str.join("&");
-            },
-            data: item
+            url: "../../Item/Update/",
+            data: $scope.activeItem
         }).then(function mySucces(response) {
             $scope.activeItem = response.data;
         }, function myError(response) {
@@ -113,12 +162,24 @@ app.controller("developerCtrl", function ($scope, $http) {
 
     // #region Public methods
 
+    $scope.getMyDetails = function () {
+        _getMyDetails();
+    };
+
+    $scope.saveMyDetails = function () {
+        _saveMyDetails();
+    };
+
     $scope.getItemDetails = function (itemId) {
+
+        // todo: find new way to handle events
+        $("#task-modal").modal();
+
         _getItemDetails(itemId);
     };
 
-    $scope.saveItemDetails = function (item) {
-        _saveItemDetails(item);
+    $scope.saveItemDetails = function () {
+        _saveItemDetails();
     };
 
     $scope.getTeam = function () {

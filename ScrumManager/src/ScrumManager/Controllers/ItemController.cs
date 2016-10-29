@@ -77,7 +77,7 @@ namespace ScrumManager.Controllers
         /// <param name="obj"></param>
         /// <returns></returns>
         [HttpPost]
-        public async System.Threading.Tasks.Task<JsonResult> Update(Item obj)
+        public async System.Threading.Tasks.Task<JsonResult> Update([FromBody]Item obj)
         {
             try
             {
