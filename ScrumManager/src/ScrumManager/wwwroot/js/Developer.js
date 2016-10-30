@@ -38,6 +38,17 @@ app.directive('storyDialog', function () {
     };
 });
 
+app.directive('memberDialog', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '../../directives/member-dialog.html',
+        transclude: true,
+        link: function (scope) {
+
+        }
+    };
+});
+
 app.controller("developerCtrl", function ($scope, $http) {
     
     // Init lists
@@ -55,6 +66,9 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.newStory = false;
     $scope.editStory = false;
     $scope.team = {};
+    $scope.activeMember = {};
+    $scope.newMember = false;
+    $scope.editMember = false;
 
     // Init buttons
     $scope.viewMembersButton = false;
@@ -219,6 +233,17 @@ app.controller("developerCtrl", function ($scope, $http) {
         });
     }
 
+    function _getPersonDetails(personId) {
+        $http({
+            method: "GET",
+            url: "../../Person/Get/" + personId
+        }).then(function mySucces(response) {
+            $scope.activeMember = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
     // #endregion Private methods
 
     // #region Public methods
@@ -288,6 +313,28 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.hideTeam = function () {
         $scope.viewMembersButton = true;
         $scope.hideMembersButton = false;
+    };
+
+    $scope.addNewPerson = function (teamId) {
+        $scope.editMember = false;
+        $scope.newMember = true;
+
+        $scope.activeMember = {
+            teamId: teamId
+        };
+
+        // todo: find new way to handle events
+        $("#member-modal").modal();
+    };
+
+    $scope.getPersonDetails = function (personId) {
+        $scope.editMember = true;
+        $scope.newMember = false;
+
+        _getPersonDetails(personId);
+
+        // todo: find new way to handle events
+        $("#member-modal").modal();
     };
 
     $scope.getProductBacklog = function () {
