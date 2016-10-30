@@ -193,6 +193,7 @@ C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Progr
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Startup.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\ItemsController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\PersonsController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\ProjectsController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\StoriesController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\TeamsController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Model\ApiContext.cs

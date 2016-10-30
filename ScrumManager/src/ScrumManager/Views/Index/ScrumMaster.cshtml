@@ -13,6 +13,64 @@
         </div>
     </div>
     <div class="container">
+        <h3>Projects</h3>
+        <div class="col-md-12">
+            <div>
+                <button data-toggle="collapse" ng-show="viewProjectsButton" ng-click="getProjects();" data-target="#projects">View projects</button>
+                <button data-toggle="collapse" ng-show="hideProjectsButton" ng-click="hideProjects();" data-target="#projects">Hiden projects</button>
+            </div>
+            <project-dialog></project-dialog>         
+        </div>
+        <div id="projects" class="collapse">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button type="button" ng-click="addNewProject();" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> New member
+                                </button>
+                            </th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Start date</th>
+                            <th>Deadline</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="project in projects">
+                            <td>
+                                <button type="button" ng-click="editProjectDetails(project.projectId);" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> Edit
+                                </button>
+                            </td>
+                            <td>
+                                <span ng-bind="project.shortCode"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="project.name"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="project.startDate"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="project.endDate"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="project.created"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="project.modified"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <div class="col-md-12">
             <h4><span ng-bind="team.name"></span></h4>
             <div>

@@ -49,32 +49,54 @@ app.directive('memberDialog', function () {
     };
 });
 
+app.directive('projectDialog', function () {
+    return {
+        restrict: 'E',
+        templateUrl: '../../directives/project-dialog.html',
+        transclude: true,
+        link: function (scope) {
+
+        }
+    };
+});
+
 app.controller("developerCtrl", function ($scope, $http) {
     
     // Init lists
     $scope.items = [];
     $scope.stories = [];
+    $scope.projects = [];
 
     // Init objects
     $scope.me = {};
     $scope.myRemainingWork = 0;
     $scope.user = {};
+
     $scope.activeItem = {};
     $scope.newItem = false;
     $scope.editItem = false;
+
     $scope.activeStory = {};
     $scope.newStory = false;
     $scope.editStory = false;
+
     $scope.team = {};
+
     $scope.activeMember = {};
     $scope.newMember = false;
     $scope.editMember = false;
+
+    $scope.activeProject = {};
+    $scope.editProject = false;
+    $scope.newProject = false;
 
     // Init buttons
     $scope.viewMembersButton = false;
     $scope.hideMembersButton = false;
     $scope.viewProductBacklogButton = false;
     $scope.hideProductBacklogButton = false;
+    $scope.viewProjectsButton = false;
+    $scope.hideProjectsButton = false;
 
     // Init
     (function () {
@@ -84,7 +106,7 @@ app.controller("developerCtrl", function ($scope, $http) {
 
         $scope.viewMembersButton = true;
         $scope.viewProductBacklogButton = true;
-
+        $scope.viewProjectsButton = true;
     }());
 
     // #region Private methods
@@ -244,6 +266,76 @@ app.controller("developerCtrl", function ($scope, $http) {
         });
     }
 
+    function _savePersonDetails() {
+        $http({
+            method: "POST",
+            url: "../../Person/Update/",
+            data: $scope.activeMember
+        }).then(function mySucces(response) {
+            _getTeam();
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _savePerson() {
+        $http({
+            method: "POST",
+            url: "../../Person/Add/",
+            data: $scope.activeMember
+        }).then(function mySucces(response) {
+            _getTeam();
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _getProjects() {
+        $http({
+            method: "GET",
+            url: "../../Project/GetList/"
+        }).then(function mySucces(response) {
+            $scope.projects = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _getProjectDetails(projectId) {
+        $http({
+            method: "GET",
+            url: "../../Project/Get/" + projectId
+        }).then(function mySucces(response) {
+            $scope.activeProject = response.data;
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _saveProject() {
+        $http({
+            method: "POST",
+            url: "../../Project/Add/",
+            data: $scope.activeProject
+        }).then(function mySucces(response) {
+            _getProjects();
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
+    function _saveProjectDetails() {
+        $http({
+            method: "POST",
+            url: "../../Project/Update/",
+            data: $scope.activeProject
+        }).then(function mySucces(response) {
+            _getProjects();
+        }, function myError(response) {
+            console.log(response.statusText);
+        });
+    }
+
     // #endregion Private methods
 
     // #region Public methods
@@ -327,6 +419,14 @@ app.controller("developerCtrl", function ($scope, $http) {
         $("#member-modal").modal();
     };
 
+    $scope.saveMemberDetails = function () {
+        _savePersonDetails();
+    };
+
+    $scope.addMember = function () {
+        _savePerson();
+    };
+
     $scope.getPersonDetails = function (personId) {
         $scope.editMember = true;
         $scope.newMember = false;
@@ -347,6 +447,58 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.hideProductBacklog = function () {
         $scope.viewProductBacklogButton = true;
         $scope.hideProductBacklogButton = false;
+    };
+
+    $scope.getProjects = function () {
+        _getProjects();
+
+        $scope.viewProjectsButton = false;
+        $scope.hideProjectsButton = true;
+    };
+
+    $scope.hideProjects = function () {
+        $scope.viewProjectsButton = true;
+        $scope.hideProjectsButton = false;
+    };
+
+    $scope.editProjectDetails = function (projectId) {
+        $scope.editProject = true;
+        $scope.newProject = false;
+
+        // todo: find new way to handle events
+        $("#project-modal").modal();
+
+        _getStoryDetails(storyId);
+    };
+
+    $scope.getProjectDetails = function (projectId) {
+        $scope.editProject = true;
+        $scope.newProject = false;
+
+        // todo: find new way to handle events
+        $("#project-modal").modal();
+
+        _getProjectDetails(projectId);
+    };
+
+    $scope.saveProjectDetails = function () {
+        _saveProjectDetails();
+    };
+
+    $scope.addNewProject = function () {
+        $scope.editProject = false;
+        $scope.newProject = true;
+
+        $scope.activeProject = {
+ 
+        };
+
+        // todo: find new way to handle events
+        $("#project-modal").modal();
+    };
+
+    $scope.addProject = function () {
+        _saveProject();
     };
 
     // #endregion Public methods
