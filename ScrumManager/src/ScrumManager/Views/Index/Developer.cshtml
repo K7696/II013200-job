@@ -2,8 +2,8 @@
     ViewData["Title"] = "Developer dashboard";
 }
 
-<div class="container" ng-app="developer" ng-controller="developerCtrl">
-    <div class="container">
+<div class="" ng-app="developer" ng-controller="developerCtrl">
+    <div class="">
         <h3>Developer dashboard - <small>Welcome <span ng-bind="user.firstname"></span>&nbsp;<span ng-bind="user.lastname"></span></small></h3>
         <div class="col-md-12">
             <button type="button" id="accountBtn" ng-click="getMyDetails();" class="btn btn-default btn-sm">
@@ -12,7 +12,7 @@
             <user-dialog></user-dialog>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="col-md-12">
             <h4>My tasks</h4>
             <p>Remaining work: <span ng-bind="myRemainingWork"></span> h</p>
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div> 
-    <div class="container">
+    <div class="">
         <div class="col-md-12">
             <h4>Current sprint backlog</h4>
             <div>
@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="col-md-12">
             <h4>Product backlog</h4>
             <div>
@@ -111,12 +111,30 @@
                                 <span ng-bind="story.modified"></span>
                             </td>
                         </tr>
+                        <tr ng-repeat="item in story.tasks">
+                          <td></td>
+                          <td>
+                            <span ng-bind="item.shortCode"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="item.name"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="item.workLeft"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="item.created"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="item.modified"></span>
+                          </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="col-md-12">
             <h4><span ng-bind="team.name"></span></h4>
             <div>

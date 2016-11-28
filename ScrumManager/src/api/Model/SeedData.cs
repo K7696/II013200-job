@@ -30,7 +30,7 @@ namespace CoreBusinessObjects
                 }
 
                 context.Roles.AddRange(
-                   new Role
+                   new Roles
                    {
                        ObjectId = Guid.NewGuid(),
                        CompanyId = 1,
@@ -42,7 +42,7 @@ namespace CoreBusinessObjects
                        CreatorId = 1,
                        ModifierId = 1
                    },
-                   new Role
+                   new Roles
                    {
                        ObjectId = Guid.NewGuid(),
                        CompanyId = 1,
@@ -54,7 +54,7 @@ namespace CoreBusinessObjects
                        CreatorId = 1,
                        ModifierId = 1
                    },
-                   new Role
+                   new Roles
                    {
                        ObjectId = Guid.NewGuid(),
                        CompanyId = 1,
@@ -66,7 +66,7 @@ namespace CoreBusinessObjects
                        CreatorId = 1,
                        ModifierId = 1
                    },
-                   new Role
+                   new Roles
                    {
                        ObjectId = Guid.NewGuid(),
                        CompanyId = 1,

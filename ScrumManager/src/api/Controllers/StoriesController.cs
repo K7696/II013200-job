@@ -34,6 +34,54 @@ namespace api.Controllers
         #region Private methods
 
         /// <summary>
+        /// Get stories
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <returns></returns>
+        private IQueryable<Story> getStories(int companyId)
+        {
+            var result = from stories in context.Stories
+                         where stories.CompanyId == companyId
+                         select new Story
+                         {
+                             StoryId = stories.StoryId,
+                             CompanyId = stories.CompanyId,
+                             ShortCode = stories.ShortCode,
+                             Name = stories.Name,
+                             Priority = stories.Priority,
+                             FeatureId = stories.FeatureId,
+                             AcceptanceCriteria = stories.AcceptanceCriteria,
+                             ProjectId = stories.ProjectId,
+                             Description = stories.Description,
+                             Created = stories.Created,
+                             Modified = stories.Modified,
+                             CreatorId = stories.CreatorId,
+                             ModifierId = stories.ModifierId,
+                             Tasks = (from items in context.Items where items.StoryId == stories.StoryId
+                                      select new Item
+                                      {
+                                          ItemId = items.ItemId,
+                                          CompanyId = items.CompanyId,
+                                          StoryId = items.StoryId,
+                                          FeatureId = items.FeatureId,
+                                          ProjectId = items.ProjectId,
+                                          ShortCode = items.ShortCode,
+                                          Name = items.Name,
+                                          Description = items.Description,
+                                          UserAssignedTo = items.UserAssignedTo,
+                                          Created = items.Created,
+                                          Modified = items.Modified,
+                                          CreatorId = items.CreatorId,
+                                          ModifierId = items.ModifierId,
+                                          ObjectId = items.ObjectId,
+                                          WorkLeft = items.WorkLeft
+                                      }).ToList()                          
+                         } as Story;
+
+            return result;
+        }
+
+        /// <summary>
         /// Get story
         /// </summary>
         /// <param name="companyId"></param>
@@ -75,8 +123,7 @@ namespace api.Controllers
         /// <returns></returns>
         public IEnumerable<Story> Get(int companyId)
         {
-            var result = context.Stories
-                .Where(x => x.CompanyId == companyId)
+            var result = getStories(companyId)
                 .ToList();
 
             return result;
@@ -97,9 +144,9 @@ namespace api.Controllers
         {
             try
             {
-                var result = context.Stories
-                .Where(x => x.CompanyId == companyId && x.StoryId == storyId)
-                .FirstOrDefault();
+                var result = getStories(companyId)
+                    .Where(x => x.StoryId == storyId)
+                        .FirstOrDefault();
 
                 if (result != null)
                     return Ok(result);

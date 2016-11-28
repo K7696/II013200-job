@@ -21,7 +21,7 @@ namespace api.Model
         public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public DbSet<Roles> Roles { get; set; }
 
         #endregion Properties
 
@@ -46,7 +46,7 @@ namespace api.Model
             modelBuilder.Entity<Team>()
                 .HasKey(t => t.TeamId);
 
-            modelBuilder.Entity<Role>()
+            modelBuilder.Entity<Roles>()
                 .HasKey(r => r.RoleId);
 
             modelBuilder.Entity<Person>()

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using api.Model;
 using CoreBusinessObjects;
 using Microsoft.EntityFrameworkCore;
+using CoreBusinessObjects.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -36,11 +37,53 @@ namespace api.Controllers
         #region Private methods
 
         /// <summary>
+        /// Get teams
+        /// </summary>
+        /// <param name="companyId">Company Id</param>
+        /// <returns>IQueryable</returns>
+        private IQueryable<Team> getTeams(int companyId)
+        {
+            var result = from team in context.Teams where team.CompanyId == companyId
+                         select new Team
+                         {
+                             TeamId = team.TeamId,
+                             CompanyId = team.CompanyId,
+                             ShortCode = team.ShortCode,
+                             Name = team.Name,
+                             Description = team.Description,
+                             Created = team.Created,
+                             Modified = team.Modified,
+                             Persons = (from persons in context.Persons where persons.TeamId == team.TeamId
+                                       select new Person {
+                                            PersonId = persons.PersonId,
+                                            CompanyId = persons.CompanyId,
+                                            ShortCode = persons.ShortCode,
+                                            Name = persons.Name,
+                                            Firstname = persons.Firstname,
+                                            Lastname = persons.Lastname,
+                                            Email = persons.Email,
+                                            Phonenumber = persons.Phonenumber,
+                                            Created = persons.Created,
+                                            Modified = persons.Modified,
+                                            Role = (from roles in context.Roles where roles.RoleId == persons.RoleId
+                                                   select new CoreBusinessObjects.Roles
+                                                   {
+                                                       RoleId = roles.RoleId,
+                                                       ShortCode = roles.ShortCode,
+                                                       Name = roles.Name
+                                                   }).FirstOrDefault()
+                                       }).ToList()                                      
+                         };
+
+            return result;
+        }
+
+        /// <summary>
         /// Get a team
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="teamId">Team Id</param>
-        /// <returns>IQueryable</returns>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         private IQueryable<Team> getTeam(int companyId, int teamId)
         {
             var result = context.Teams
@@ -76,9 +119,8 @@ namespace api.Controllers
         /// <returns></returns>
         public IEnumerable<Team> Get(int companyId)
         {
-            var result = context.Teams
-                .Where(x => x.CompanyId == companyId)
-                .ToList();
+            var result = getTeams(companyId)
+                 .ToList();
 
             return result;
         }
@@ -99,14 +141,12 @@ namespace api.Controllers
         {
             try
             {
-                var result = context.Teams
-                    .Where(x => x.CompanyId == companyId && x.TeamId == teamId)
-                        .Include(x => x.Persons);
+                var result = getTeams(companyId)
+                    .Where(x => x.TeamId == teamId)
+                        .FirstOrDefault();
 
-                var team = result.FirstOrDefault();
-
-                if (team != null)
-                    return Ok(team);
+                if (result != null)
+                    return Ok(result);
             }
             catch (Exception ex)
             {
@@ -138,7 +178,7 @@ namespace api.Controllers
                 context.SaveChanges();
 
                 var result = getTeam(companyid, value.TeamId)
-                    .FirstOrDefault();
+                        .FirstOrDefault();
 
                 if (result != null)
                     return Ok(result);
@@ -172,7 +212,7 @@ namespace api.Controllers
                     return BadRequest();
 
                 var result = getTeam(companyId, id)
-                    .FirstOrDefault();
+                        .FirstOrDefault();
 
                 if (result == null)
                     return NotFound();
@@ -183,7 +223,7 @@ namespace api.Controllers
                 context.SaveChanges();
 
                 var updatedResult = getTeam(companyId, id)
-                    .FirstOrDefault();
+                        .FirstOrDefault();
 
                 if (updatedResult != null)
                     return Ok(updatedResult);
@@ -213,7 +253,7 @@ namespace api.Controllers
             try
             {
                 var result = getTeam(companyId, id)
-                    .FirstOrDefault();
+                        .FirstOrDefault();
 
                 if (result == null)
                     return NotFound();

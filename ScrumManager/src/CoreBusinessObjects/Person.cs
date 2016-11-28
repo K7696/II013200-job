@@ -18,7 +18,7 @@ namespace CoreBusinessObjects.Models
 
         // Role
         public int RoleId { get; set; }
-        public Role Role { get; set; }
+        public Roles Role { get; set; }
 
         // Team
         public int TeamId { get; set; }

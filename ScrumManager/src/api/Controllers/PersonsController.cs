@@ -37,13 +37,95 @@ namespace api.Controllers
         /// <summary>
         /// Get a person
         /// </summary>
-        /// <param name="companyId"></param>
+        /// <param name="companyId">Company Id</param>
         /// <param name="personId">Person Id</param>
         /// <returns>IQueryable</returns>
         private IQueryable<Person> getPerson(int companyId, int personId)
         {
-            var result = context.Persons
-                .Where(x => x.CompanyId == companyId && x.PersonId == personId);
+            var result = from persons in context.Persons
+                         join role in context.Roles on persons.RoleId equals role.RoleId 
+                         join team in context.Teams on persons.TeamId equals team.TeamId
+                         where persons.CompanyId == companyId && persons.PersonId == personId
+                         select new Person {
+                             PersonId = persons.PersonId,
+                             CompanyId = persons.CompanyId,
+                             ShortCode = persons.ShortCode,
+                             Created = persons.Created,
+                             Modified = persons.Modified,
+                             Name = persons.Name,
+                             ObjectId = persons.ObjectId,
+                             Firstname = persons.Firstname,
+                             Lastname = persons.Lastname,
+                             Email = persons.Email,
+                             Phonenumber = persons.Phonenumber,
+                             Description = persons.Description,
+                             Role = new CoreBusinessObjects.Roles
+                             {
+                                 RoleId = role.RoleId,
+                                 Name = role.Name,
+                                 Created = role.Created,
+                                 Modified = role.Modified
+                             },
+                             Team = new CoreBusinessObjects.Team
+                             {
+                                 TeamId = team.TeamId,
+                                 ShortCode = team.ShortCode,
+                                 Name = team.Name,
+                                 Description = team.Description,
+                                 Created = team.Created,
+                                 Modified = team.Modified
+                             }
+                         }
+                         
+                         ;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get persons
+        /// </summary>
+        /// <param name="companyId">Company Id</param>
+        /// <returns>IQueryable</returns>
+        private IQueryable<Person> getPersons(int companyId)
+        {
+            var result = from persons in context.Persons
+                         join role in context.Roles on persons.RoleId equals role.RoleId
+                         join team in context.Teams on persons.TeamId equals team.TeamId
+                         where persons.CompanyId == companyId 
+                         select new Person
+                         {
+                             PersonId = persons.PersonId,
+                             CompanyId = persons.CompanyId,
+                             ShortCode = persons.ShortCode,
+                             Created = persons.Created,
+                             Modified = persons.Modified,
+                             Name = persons.Name,
+                             ObjectId = persons.ObjectId,
+                             Firstname = persons.Firstname,
+                             Lastname = persons.Lastname,
+                             Email = persons.Email,
+                             Phonenumber = persons.Phonenumber,
+                             Description = persons.Description,
+                             Role = new CoreBusinessObjects.Roles
+                             {
+                                 RoleId = role.RoleId,
+                                 Name = role.Name,
+                                 Created = role.Created,
+                                 Modified = role.Modified
+                             },
+                             Team = new CoreBusinessObjects.Team
+                             {
+                                 TeamId = team.TeamId,
+                                 ShortCode = team.ShortCode,
+                                 Name = team.Name,
+                                 Description = team.Description,
+                                 Created = team.Created,
+                                 Modified = team.Modified
+                             }
+                         }
+
+                         ;
 
             return result;
         }
@@ -82,8 +164,7 @@ namespace api.Controllers
         /// <returns></returns>
         public IEnumerable<Person> Get(int companyId)
         {
-            var result = context.Persons
-                .Where(x => x.CompanyId == companyId)
+            var result = getPersons(companyId)
                 .ToList();
 
             return result;
@@ -104,8 +185,7 @@ namespace api.Controllers
         {
             try
             {
-                var result = context.Persons
-                .Where(x => x.CompanyId == companyId && x.PersonId == personId)
+                var result = getPerson(companyId, personId)
                 .FirstOrDefault();
 
                 if (result != null)

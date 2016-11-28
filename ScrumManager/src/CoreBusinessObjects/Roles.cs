@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreBusinessObjects
 {
-    public class Role : BaseClass
+    public class Roles : BaseClass
     {
         #region Properties
 

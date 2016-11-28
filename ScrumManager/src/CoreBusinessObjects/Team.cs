@@ -11,13 +11,8 @@ namespace CoreBusinessObjects
         #region Properties
 
         public int TeamId { get; set; }
-        public List<Person> Persons { get; set; }
+        public ICollection<Person> Persons { get; set; }
 
         #endregion // Properties
-
-        public Team()
-        {
-            Persons = new List<Person>();
-        }
     }
 }
