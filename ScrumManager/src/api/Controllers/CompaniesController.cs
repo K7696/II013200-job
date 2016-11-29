@@ -119,7 +119,7 @@ namespace api.Controllers
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpGet("{storyId}")]
+        [HttpGet("{companyId}")]
         public IActionResult Get(int companyId)
         {
             try

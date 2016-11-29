@@ -239,22 +239,22 @@ namespace api.Controllers
         /// Update a person
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Person Id</param>
+        /// <param name="personId">Person Id</param>
         /// <param name="value">Person entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Person value)
+        [HttpPut("{personId}")]
+        public IActionResult PUT(int companyId, int personId, [FromBody]Person value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (personId < 1)
                     return BadRequest();
 
-                var result = getPerson(companyId, id)
+                var result = getPerson(companyId, personId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -265,7 +265,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getPerson(companyId, id)
+                var updatedResult = getPerson(companyId, personId)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -285,17 +285,17 @@ namespace api.Controllers
         /// Delete a person
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="personId"></param>
         /// <returns>StatusCode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{personId}")]
+        public IActionResult Delete(int companyId, int personId)
         {
             try
             {
-                var result = getPerson(companyId, id)
+                var result = getPerson(companyId, personId)
                     .FirstOrDefault();
 
                 if (result == null)

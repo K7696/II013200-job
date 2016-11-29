@@ -125,7 +125,7 @@ namespace api.Controllers
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpGet("{storyId}")]
+        [HttpGet("{featureId}")]
         public IActionResult Get(int companyId, int featureId)
         {
             try
@@ -185,22 +185,22 @@ namespace api.Controllers
         /// Update a feature
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">feature Id</param>
+        /// <param name="featureId">feature Id</param>
         /// <param name="value">feature entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Feature value)
+        [HttpPut("{featureId}")]
+        public IActionResult PUT(int companyId, int featureId, [FromBody]Feature value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (featureId < 1)
                     return BadRequest();
 
-                var result = getFeature(companyId, id)
+                var result = getFeature(companyId, featureId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -210,7 +210,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getFeature(companyId, id)
+                var updatedResult = getFeature(companyId, featureId)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -230,17 +230,17 @@ namespace api.Controllers
         /// Delete a feature
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="featureId"></param>
         /// <returns>StatusCode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{featureId}")]
+        public IActionResult Delete(int companyId, int featureId)
         {
             try
             {
-                var result = getFeature(companyId, id)
+                var result = getFeature(companyId, featureId)
                     .FirstOrDefault();
 
                 if (result == null)

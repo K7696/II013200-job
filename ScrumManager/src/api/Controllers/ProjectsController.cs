@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using api.Model;
 using CoreBusinessObjects.Models;
+using CoreBusinessObjects;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,6 +34,47 @@ namespace api.Controllers
         #endregion Constructor
 
         #region Private methods
+
+        /// <summary>
+        /// Get all projects
+        /// </summary>
+        /// <param name="companyid"></param>
+        /// <returns></returns>
+        private IQueryable<Project> getProjects(int companyid)
+        {
+            var result = from projects in context.Projects
+                         where projects.CompanyId == companyid
+                         select new Project
+                         {
+                             ProjectId = projects.ProjectId,
+                             CompanyId = projects.CompanyId,
+                             CustomerId = projects.CustomerId,
+                             ShortCode = projects.ShortCode,
+                             Name = projects.Name,
+                             Description = projects.Description,
+                             StartDate = projects.StartDate,
+                             Deadline = projects.Deadline,
+                             Created = projects.Created,
+                             Modified = projects.Modified,
+                             Sprints = (from sprints in context.Sprints where sprints.ProjectId == projects.ProjectId
+                                       select new Sprint
+                                       {
+                                           SprintId = sprints.SprintId,
+                                           ProjectId = sprints.ProjectId,
+                                           CompanyId = sprints.CompanyId,
+                                           ShortCode = sprints.ShortCode,
+                                           Name = sprints.Name,
+                                           TeamId = sprints.TeamId,
+                                           Description = sprints.Description,
+                                           StartDate = sprints.StartDate,
+                                           EndDate = sprints.EndDate,
+                                           Created = sprints.Created,
+                                           Modified = sprints.Modified
+                                       }).ToList()
+                         } as Project;
+
+            return result;
+        }
 
         /// <summary>
         /// Get a project
@@ -78,8 +120,7 @@ namespace api.Controllers
         [HttpGet]
         public IEnumerable<Project> Get(int companyId)
         {
-            var result = context.Projects
-                .Where(x => x.CompanyId == companyId)
+            var result = getProjects(companyId)
                 .ToList();
 
             return result;
@@ -89,17 +130,17 @@ namespace api.Controllers
         /// <summary>
         /// Get single project
         /// </summary>
-        /// <param name="id">Project id</param>
+        /// <param name="projectId">Project id</param>
         /// <returns>The entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpGet("{id}")]
-        public IActionResult Get(int companyId, int id)
+        [HttpGet("{projectId}")]
+        public IActionResult Get(int companyId, int projectId)
         {
             try
             {
-                var result = getProject(companyId, id)
+                var result = getProject(companyId, projectId)
                     .FirstOrDefault();
 
                 if (result != null)
@@ -152,22 +193,22 @@ namespace api.Controllers
         /// Update a project
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Project Id</param>
+        /// <param name="projectId">Project Id</param>
         /// <param name="value">Project entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Project value)
+        [HttpPut("{projectId}")]
+        public IActionResult PUT(int companyId, int projectId, [FromBody]Project value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (projectId < 1)
                     return BadRequest();
 
-                var result = getProject(companyId, id)
+                var result = getProject(companyId, projectId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -178,7 +219,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getProject(companyId, id)
+                var updatedResult = getProject(companyId, projectId)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -199,17 +240,17 @@ namespace api.Controllers
         /// Delete a preoject
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Project Id</param>
+        /// <param name="projectId">Project Id</param>
         /// <returns>Statuscode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{projectId}")]
+        public IActionResult Delete(int companyId, int projectId)
         {
             try
             {
-                var result = getProject(companyId, id)
+                var result = getProject(companyId, projectId)
                     .FirstOrDefault();
 
                 if (result == null)

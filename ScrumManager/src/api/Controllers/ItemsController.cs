@@ -88,17 +88,17 @@ namespace api.Controllers
         /// <summary>
         /// Get single item
         /// </summary>
-        /// <param name="id">Item id</param>
+        /// <param name="itemId">Item id</param>
         /// <returns>The item entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpGet("{id}")]
-        public IActionResult Get(int companyId, int id)
+        [HttpGet("{itemId}")]
+        public IActionResult Get(int companyId, int itemId)
         {
             try
             {
-                var result = getSingleItem(companyId, id)
+                var result = getSingleItem(companyId, itemId)
                     .FirstOrDefault();
 
                 if (result != null)
@@ -152,22 +152,22 @@ namespace api.Controllers
         /// Update an item
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Item Id</param>
+        /// <param name="itemId">Item Id</param>
         /// <param name="value">Item entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Item value)
+        [HttpPut("{itemId}")]
+        public IActionResult PUT(int companyId, int itemId, [FromBody]Item value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (itemId < 1)
                     return BadRequest();
 
-                var result = getSingleItem(companyId, id)
+                var result = getSingleItem(companyId, itemId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -178,7 +178,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getSingleItem(companyId, id)
+                var updatedResult = getSingleItem(companyId, itemId)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -199,17 +199,17 @@ namespace api.Controllers
         /// Delete an item
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Item Id</param>
+        /// <param name="itemId">Item Id</param>
         /// <returns>Statuscode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{itemId}")]
+        public IActionResult Delete(int companyId, int itemId)
         {
             try
             {
-                var result = getSingleItem(companyId, id)
+                var result = getSingleItem(companyId, itemId)
                     .FirstOrDefault();
 
                 if (result == null)

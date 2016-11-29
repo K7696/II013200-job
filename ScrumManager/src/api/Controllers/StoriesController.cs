@@ -199,22 +199,22 @@ namespace api.Controllers
         /// Update a story
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Story Id</param>
+        /// <param name="storyId">Story Id</param>
         /// <param name="value">Story entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Story value)
+        [HttpPut("{storyId}")]
+        public IActionResult PUT(int companyId, int storyId, [FromBody]Story value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (storyId < 1)
                     return BadRequest();
 
-                var result = getStory(companyId, id)
+                var result = getStory(companyId, storyId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -224,7 +224,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getStory(companyId, id)
+                var updatedResult = getStory(companyId, storyId)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -244,17 +244,17 @@ namespace api.Controllers
         /// Delete a story
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="storyId"></param>
         /// <returns>StatusCode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{storyId}")]
+        public IActionResult Delete(int companyId, int storyId)
         {
             try
             {
-                var result = getStory(companyId, id)
+                var result = getStory(companyId, storyId)
                     .FirstOrDefault();
 
                 if (result == null)

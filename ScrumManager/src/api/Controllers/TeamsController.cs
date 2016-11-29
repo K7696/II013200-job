@@ -196,22 +196,22 @@ namespace api.Controllers
         /// Update a team
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Team Id</param>
+        /// <param name="teamId">Team Id</param>
         /// <param name="value">Team entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Team value)
+        [HttpPut("{teamId}")]
+        public IActionResult PUT(int companyId, int teamId, [FromBody]Team value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (teamId < 1)
                     return BadRequest();
 
-                var result = getTeam(companyId, id)
+                var result = getTeam(companyId, teamId)
                         .FirstOrDefault();
 
                 if (result == null)
@@ -222,7 +222,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getTeam(companyId, id)
+                var updatedResult = getTeam(companyId, teamId)
                         .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -242,17 +242,17 @@ namespace api.Controllers
         /// Delete a team
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="teamId"></param>
         /// <returns>StatusCode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{teamId}")]
+        public IActionResult Delete(int companyId, int teamId)
         {
             try
             {
-                var result = getTeam(companyId, id)
+                var result = getTeam(companyId, teamId)
                         .FirstOrDefault();
 
                 if (result == null)

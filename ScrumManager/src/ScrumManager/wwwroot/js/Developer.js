@@ -470,7 +470,7 @@ app.controller("developerCtrl", function ($scope, $http) {
         // todo: find new way to handle events
         $("#project-modal").modal();
 
-        _getStoryDetails(storyId);
+        _getProjectDetails(projectId);
     };
 
     $scope.getProjectDetails = function (projectId) {

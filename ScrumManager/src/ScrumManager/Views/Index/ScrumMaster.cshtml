@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div>
                 <button data-toggle="collapse" ng-show="viewProjectsButton" ng-click="getProjects();" data-target="#projects">View projects</button>
-                <button data-toggle="collapse" ng-show="hideProjectsButton" ng-click="hideProjects();" data-target="#projects">Hiden projects</button>
+                <button data-toggle="collapse" ng-show="hideProjectsButton" ng-click="hideProjects();" data-target="#projects">Hide projects</button>
             </div>
             <project-dialog></project-dialog>         
         </div>
@@ -28,7 +28,7 @@
                         <tr>
                             <th>
                                 <button type="button" ng-click="addNewProject();" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-plus"></span> New member
+                                    <span class="glyphicon glyphicon-plus"></span> New project
                                 </button>
                             </th>
                             <th>Code</th>
@@ -39,12 +39,15 @@
                             <th>Modified</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr ng-repeat="project in projects">
+                    <tbody ng-repeat="project in projects">
+                        <tr>
                             <td>
                                 <button type="button" ng-click="editProjectDetails(project.projectId);" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-plus"></span> Edit
                                 </button>
+                              <button type="button" ng-click="addNewSprint(project.projectId);" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus"></span> New sprint
+                              </button>
                             </td>
                             <td>
                                 <span ng-bind="project.shortCode"></span>
@@ -53,17 +56,60 @@
                                 <span ng-bind="project.name"></span>
                             </td>
                             <td>
-                                <span ng-bind="project.startDate"></span>
+                              <span>
+                                {{project.startDate | date:"MM-dd-yyyy"}}
+                              </span>
                             </td>
                             <td>
-                                <span ng-bind="project.endDate"></span>
+                              <span>
+                                {{project.deadline | date:"MM-dd-yyyy"}}
+                              </span>
                             </td>
                             <td>
-                                <span ng-bind="project.created"></span>
+                              <span>
+                                {{project.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
                             </td>
                             <td>
-                                <span ng-bind="project.modified"></span>
+                              <span>
+                                {{project.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
                             </td>
+                        </tr>
+                        <tr ng-repeat="sprint in project.sprints">
+                          <td>
+                            <span style="margin-left:1.5em;">
+                              <button type="button" ng-click="editSprintDetails(sprint.sprintId);" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus"></span> Edit
+                              </button>
+                            </span>                         
+                          </td>
+                          <td>
+                            <span ng-bind="sprint.shortCode"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="sprint.name"></span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.startDate | date:"MM-dd-yyyy"}}
+                            </span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.endDate | date:"MM-dd-yyyy"}}
+                            </span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
+                          </td>
                         </tr>
                     </tbody>
                 </table>

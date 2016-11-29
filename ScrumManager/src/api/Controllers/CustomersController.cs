@@ -125,7 +125,7 @@ namespace api.Controllers
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpGet("{storyId}")]
+        [HttpGet("{customerId}")]
         public IActionResult Get(int companyId, int CustomerId)
         {
             try
@@ -185,22 +185,22 @@ namespace api.Controllers
         /// Update a Customer
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Customer Id</param>
+        /// <param name="customerId">Customer Id</param>
         /// <param name="value">Customer entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Customer value)
+        [HttpPut("{customerId}")]
+        public IActionResult PUT(int companyId, int customerId, [FromBody]Customer value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (customerId < 1)
                     return BadRequest();
 
-                var result = getCustomer(companyId, id)
+                var result = getCustomer(companyId, customerId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -210,7 +210,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getCustomer(companyId, id)
+                var updatedResult = getCustomer(companyId, customerId)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -230,17 +230,17 @@ namespace api.Controllers
         /// Delete a Customer
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="customerId"></param>
         /// <returns>StatusCode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{customerId}")]
+        public IActionResult Delete(int companyId, int customerId)
         {
             try
             {
-                var result = getCustomer(companyId, id)
+                var result = getCustomer(companyId, customerId)
                     .FirstOrDefault();
 
                 if (result == null)

@@ -14,6 +14,8 @@ namespace CoreBusinessObjects.Models
         public DateTime StartDate { get; set; }
         public DateTime Deadline { get; set; }
 
-        #endregion // Properties
+        public ICollection<Sprint> Sprints { get; set; }
+
+        #endregion Properties
     }
 }

@@ -133,7 +133,7 @@ namespace api.Controllers
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpGet("{storyId}")]
+        [HttpGet("{sprintId}")]
         public IActionResult Get(int companyId, int sprintId)
         {
             try
@@ -193,22 +193,22 @@ namespace api.Controllers
         /// Update a sprint
         /// </summary>
         /// <param name="companyId">Company Id</param>
-        /// <param name="id">Sprint Id</param>
+        /// <param name="sprintId">Sprint Id</param>
         /// <param name="value">Sprint entity</param>
         /// <returns>Updated entity</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpPut("{id}")]
-        public IActionResult PUT(int companyId, int id, [FromBody]Sprint value)
+        [HttpPut("{sprintId}")]
+        public IActionResult PUT(int companyId, int sprintId, [FromBody]Sprint value)
         {
             try
             {
                 // This method is only for updating data
-                if (id < 1)
+                if (sprintId < 1)
                     return BadRequest();
 
-                var result = getSprint(companyId, id)
+                var result = getSprint(companyId, sprintId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -218,7 +218,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getSprint(companyId, id)
+                var updatedResult = getSprint(companyId, sprintId)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -238,17 +238,17 @@ namespace api.Controllers
         /// Delete a sprint
         /// </summary>
         /// <param name="companyId"></param>
-        /// <param name="id"></param>
+        /// <param name="sprintId"></param>
         /// <returns>StatusCode</returns>
         /// <statusCode="200">Ok</statusCode>
         /// <statusCode="400">Bad request</statusCode>
         /// <statusCode="404">Not found</statusCode>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int companyId, int id)
+        [HttpDelete("{sprintId}")]
+        public IActionResult Delete(int companyId, int sprintId)
         {
             try
             {
-                var result = getSprint(companyId, id)
+                var result = getSprint(companyId, sprintId)
                     .FirstOrDefault();
 
                 if (result == null)
