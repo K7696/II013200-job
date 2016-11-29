@@ -55,6 +55,7 @@ namespace api.Controllers
         /// <param name="value">Item with new values</param>
         private void mapItemUpdate(Item item, Item value)
         {
+            item.Name = value.Name;
             item.Description = value.Description;
             item.Modified = DateTime.Now;
             item.UserAssignedTo = value.UserAssignedTo;

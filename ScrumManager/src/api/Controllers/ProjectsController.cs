@@ -35,12 +35,12 @@ namespace api.Controllers
         #region Private methods
 
         /// <summary>
-        /// Get single project
+        /// Get a project
         /// </summary>
         /// <param name="companyId">Company Id</param>
         /// <param name="projectId">Project Id</param>
         /// <returns></returns>
-        private IQueryable<Project> getSingleProject(int companyId, int projectId)
+        private IQueryable<Project> getProject(int companyId, int projectId)
         {
             var result = context.Projects
                 .Where(x => x.CompanyId == companyId && x.ProjectId == projectId);
@@ -99,7 +99,7 @@ namespace api.Controllers
         {
             try
             {
-                var result = getSingleProject(companyId, id)
+                var result = getProject(companyId, id)
                     .FirstOrDefault();
 
                 if (result != null)
@@ -136,7 +136,7 @@ namespace api.Controllers
 
                 int id = value.ProjectId;
 
-                var result = getSingleProject(companyId, id)
+                var result = getProject(companyId, id)
                     .FirstOrDefault();
 
                 return Ok(result);
@@ -167,7 +167,7 @@ namespace api.Controllers
                 if (id < 1)
                     return BadRequest();
 
-                var result = getSingleProject(companyId, id)
+                var result = getProject(companyId, id)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -178,7 +178,7 @@ namespace api.Controllers
 
                 context.SaveChanges();
 
-                var updatedResult = getSingleProject(companyId, id)
+                var updatedResult = getProject(companyId, id)
                     .FirstOrDefault();
 
                 if (updatedResult != null)
@@ -209,7 +209,7 @@ namespace api.Controllers
         {
             try
             {
-                var result = getSingleProject(companyId, id)
+                var result = getProject(companyId, id)
                     .FirstOrDefault();
 
                 if (result == null)

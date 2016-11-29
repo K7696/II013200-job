@@ -15,7 +15,7 @@
     <div class="">
         <div class="col-md-12">
             <h4>My tasks</h4>
-            <p>Remaining work: <span ng-bind="myRemainingWork"></span> h</p>
+            <p><b>My remaining work:</b> <span ng-bind="myRemainingWork"></span> h</p>
             <task-dialog></task-dialog>
             <div>
                 <table class="table table-hover">
@@ -46,10 +46,14 @@
                                 <span ng-bind="item.workLeft"></span>
                             </td>
                             <td>
-                                <span ng-bind="item.created"></span>
+                              <span>
+                                {{item.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
                             </td>
                             <td>
-                                <span ng-bind="item.modified"></span>
+                              <span>
+                                {{item.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
                             </td>
                         </tr>
                     </tbody>
@@ -77,10 +81,11 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Story</th>
                             <th>Priority</th>
                             <th>Code</th>
                             <th>Name</th>
+                            <th>Work left</th>
                             <th>Created</th>
                             <th>Modified</th>
                         </tr>
@@ -105,13 +110,27 @@
                                 <span ng-bind="story.name"></span>
                             </td>
                             <td>
-                                <span ng-bind="story.created"></span>
+                                <span></span>
                             </td>
                             <td>
-                                <span ng-bind="story.modified"></span>
+                              <span>
+                                {{story.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {{story.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
                             </td>
                         </tr>
                         <tr ng-repeat="item in story.tasks">
+                          <td>
+                            <span style="margin-left:1.5em;">
+                              <button type="button" ng-click="getItemDetails(item.itemId);" class="btn btn-default btn-sm taskBtn">
+                                <span class="glyphicon glyphicon-edit"></span> Edit
+                              </button>
+                            </span>
+                          </td>
                           <td></td>
                           <td>
                             <span ng-bind="item.shortCode"></span>
@@ -123,10 +142,14 @@
                             <span ng-bind="item.workLeft"></span>
                           </td>
                           <td>
-                            <span ng-bind="item.created"></span>
+                            <span>
+                              {{item.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
                           </td>
                           <td>
-                            <span ng-bind="item.modified"></span>
+                            <span>
+                              {{item.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
                           </td>
                         </tr>
                     </tbody>

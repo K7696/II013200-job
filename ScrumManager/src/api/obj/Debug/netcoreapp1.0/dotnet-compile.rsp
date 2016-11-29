@@ -191,9 +191,13 @@
 --resource:"C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\obj\Debug\netcoreapp1.0\apidotnet-compile.deps.json",api.deps.json
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Program.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Startup.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\CompaniesController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\CustomersController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\FeaturesController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\ItemsController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\PersonsController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\ProjectsController.cs
+C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\SprintsController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\StoriesController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Controllers\TeamsController.cs
 C:\pasi-jamk\IIO12300 ASPNET-OHJELMOINTI\II013200-job\ScrumManager\src\api\Model\ApiContext.cs

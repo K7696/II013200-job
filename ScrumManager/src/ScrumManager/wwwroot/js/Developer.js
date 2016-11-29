@@ -203,7 +203,8 @@ app.controller("developerCtrl", function ($scope, $http) {
             url: "../../Item/Update/",
             data: $scope.activeItem
         }).then(function mySucces(response) {
-            _getItems();
+          _getItems();
+          _getStories();
         }, function myError(response) {
             console.log(response.statusText);
         });
@@ -215,7 +216,8 @@ app.controller("developerCtrl", function ($scope, $http) {
             url: "../../Item/Add/",
             data: $scope.activeItem
         }).then(function mySucces(response) {
-            _getItems();
+          _getItems();
+          _getStories();
         }, function myError(response) {
             console.log(response.statusText);
         });
