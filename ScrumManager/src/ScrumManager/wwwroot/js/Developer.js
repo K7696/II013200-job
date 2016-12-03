@@ -49,15 +49,26 @@ app.directive('memberDialog', function () {
     };
 });
 
-app.directive('projectDialog', function () {
+app.directive('sprintDialog', function () {
     return {
         restrict: 'E',
-        templateUrl: '../../directives/project-dialog.html',
+        templateUrl: '../../directives/sprint-dialog.html',
         transclude: true,
         link: function (scope) {
 
         }
     };
+});
+
+app.directive('projectDialog', function () {
+  return {
+    restrict: 'E',
+    templateUrl: '../../directives/project-dialog.html',
+    transclude: true,
+    link: function (scope) {
+
+    }
+  };
 });
 
 app.controller("developerCtrl", function ($scope, $http) {
@@ -89,6 +100,9 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.activeProject = {};
     $scope.editProject = false;
     $scope.newProject = false;
+
+    $scope.activeSprint = {};
+    $scope.editSprint = false;
 
     // Init buttons
     $scope.viewMembersButton = false;
@@ -338,6 +352,43 @@ app.controller("developerCtrl", function ($scope, $http) {
         });
     }
 
+    function _saveSprint() {
+      $http({
+        method: "POST",
+        url: "../../Sprint/Add/",
+        data: $scope.activeSprint
+      }).then(function mySucces(response) {
+        $scope.activeSprint = response.data;
+        _getProjects();
+      }, function myError(response) {
+        console.log(response.statusText);
+      });
+    }
+    
+    function _saveSprintDetails() {
+      $http({
+        method: "POST",
+        url: "../../Sprint/Update/",
+        data: $scope.activeSprint
+      }).then(function mySucces(response) {
+        $scope.activeSprint = response.data;
+        _getProjects();
+      }, function myError(response) {
+        console.log(response.statusText);
+      });
+    }
+    
+    function _getSprintDetails(sprintId) {
+      $http({
+        method: "GET",
+        url: "../../Sprint/Get/" + sprintId
+      }).then(function mySucces(response) {
+        $scope.activeSprint = response.data;
+      }, function myError(response) {
+        console.log(response.statusText);
+      });
+    }
+
     // #endregion Private methods
 
     // #region Public methods
@@ -463,16 +514,6 @@ app.controller("developerCtrl", function ($scope, $http) {
         $scope.hideProjectsButton = false;
     };
 
-    $scope.editProjectDetails = function (projectId) {
-        $scope.editProject = true;
-        $scope.newProject = false;
-
-        // todo: find new way to handle events
-        $("#project-modal").modal();
-
-        _getProjectDetails(projectId);
-    };
-
     $scope.getProjectDetails = function (projectId) {
         $scope.editProject = true;
         $scope.newProject = false;
@@ -491,9 +532,7 @@ app.controller("developerCtrl", function ($scope, $http) {
         $scope.editProject = false;
         $scope.newProject = true;
 
-        $scope.activeProject = {
- 
-        };
+        $scope.activeProject = {};
 
         // todo: find new way to handle events
         $("#project-modal").modal();
@@ -502,7 +541,34 @@ app.controller("developerCtrl", function ($scope, $http) {
     $scope.addProject = function () {
         _saveProject();
     };
+      
+    $scope.getSprintDetails = function (sprintId) {
+      $scope.editSprint = true;
 
+      // todo: find new way to handle events
+      $("#sprint-modal").modal();
+
+      _getSprintDetails(sprintId);
+    };
+
+    $scope.addNewSprint = function (projectId) {
+      $scope.editSprint = false;
+      $scope.activeSprint = {
+        projectId: projectId
+      };
+
+      // todo: find new way to handle events
+      $("#sprint-modal").modal();
+    };
+
+    $scope.addSprint = function () {
+      _saveSprint();
+    };
+
+    $scope.saveSprintDetails = function () {
+      _saveSprintDetails();
+    };
+    
     // #endregion Public methods
 
 });

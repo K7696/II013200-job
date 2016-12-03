@@ -221,7 +221,7 @@ namespace api.Controllers
                     return NotFound();
 
                 mapStoryUpdate(result, value);
-
+                context.Stories.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getStory(companyId, storyId)

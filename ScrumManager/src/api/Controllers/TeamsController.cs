@@ -86,8 +86,7 @@ namespace api.Controllers
         /// <returns></returns>
         private IQueryable<Team> getTeam(int companyId, int teamId)
         {
-            var result = context.Teams
-                .Where(x => x.CompanyId == companyId && x.TeamId == teamId);
+            var result = context.Teams.Where(x => x.CompanyId == companyId && x.TeamId == teamId);
 
             return result;
         }
@@ -211,7 +210,7 @@ namespace api.Controllers
                 if (teamId < 1)
                     return BadRequest();
 
-                var result = getTeam(companyId, teamId)
+                var result = context.Teams.Where(x => x.CompanyId == companyId && x.TeamId == teamId)
                         .FirstOrDefault();
 
                 if (result == null)
@@ -219,7 +218,7 @@ namespace api.Controllers
 
                 // Map person properties
                 mapTeamUpdate(result, value);
-
+                context.Teams.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getTeam(companyId, teamId)
@@ -252,7 +251,7 @@ namespace api.Controllers
         {
             try
             {
-                var result = getTeam(companyId, teamId)
+                var result = context.Teams.Where(x => x.CompanyId == companyId && x.TeamId == teamId)
                         .FirstOrDefault();
 
                 if (result == null)

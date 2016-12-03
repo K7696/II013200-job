@@ -144,7 +144,6 @@ namespace api.Controllers
             person.ShortCode = value.ShortCode;
             person.Email = value.Email;
             person.Password = value.Password;
-            person.RoleId = value.RoleId;
             person.Name = value.Name;
             person.Phonenumber = value.Phonenumber;
             person.Modified = DateTime.Now;
@@ -254,7 +253,7 @@ namespace api.Controllers
                 if (personId < 1)
                     return BadRequest();
 
-                var result = getPerson(companyId, personId)
+                var result = context.Persons.Where(x => x.CompanyId == companyId && x.PersonId == personId)
                     .FirstOrDefault();
 
                 if (result == null)
@@ -262,7 +261,7 @@ namespace api.Controllers
 
                 // Map person properties
                 mapPersonUpdate(result, value);
-
+                context.Persons.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getPerson(companyId, personId)
@@ -295,7 +294,7 @@ namespace api.Controllers
         {
             try
             {
-                var result = getPerson(companyId, personId)
+                var result = context.Persons.Where(x => x.CompanyId == companyId && x.PersonId == personId)
                     .FirstOrDefault();
 
                 if (result == null)

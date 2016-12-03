@@ -175,7 +175,7 @@ namespace api.Controllers
 
                 // Map person properties
                 mapItemUpdate(result, value);
-
+                context.Items.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getSingleItem(companyId, itemId)

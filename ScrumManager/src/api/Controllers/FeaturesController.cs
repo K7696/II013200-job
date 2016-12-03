@@ -207,7 +207,7 @@ namespace api.Controllers
                     return NotFound();
 
                 mapFeatureUpdate(result, value);
-
+                context.Features.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getFeature(companyId, featureId)

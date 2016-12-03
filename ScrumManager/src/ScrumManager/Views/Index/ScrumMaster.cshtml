@@ -19,7 +19,8 @@
                 <button data-toggle="collapse" ng-show="viewProjectsButton" ng-click="getProjects();" data-target="#projects">View projects</button>
                 <button data-toggle="collapse" ng-show="hideProjectsButton" ng-click="hideProjects();" data-target="#projects">Hide projects</button>
             </div>
-            <project-dialog></project-dialog>         
+            <project-dialog></project-dialog>     
+            <sprint-dialog></sprint-dialog>     
         </div>
         <div id="projects" class="collapse">
             <div class="col-md-12">
@@ -42,7 +43,7 @@
                     <tbody ng-repeat="project in projects">
                         <tr>
                             <td>
-                                <button type="button" ng-click="editProjectDetails(project.projectId);" class="btn btn-default btn-sm">
+                                <button type="button" ng-click="getProjectDetails(project.projectId);" class="btn btn-default btn-sm">
                                     <span class="glyphicon glyphicon-plus"></span> Edit
                                 </button>
                               <button type="button" ng-click="addNewSprint(project.projectId);" class="btn btn-default btn-sm">
@@ -79,7 +80,7 @@
                         <tr ng-repeat="sprint in project.sprints">
                           <td>
                             <span style="margin-left:1.5em;">
-                              <button type="button" ng-click="editSprintDetails(sprint.sprintId);" class="btn btn-default btn-sm">
+                              <button type="button" ng-click="getSprintDetails(sprint.sprintId);" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus"></span> Edit
                               </button>
                             </span>                         

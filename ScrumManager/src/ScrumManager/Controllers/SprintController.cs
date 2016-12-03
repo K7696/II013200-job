@@ -74,12 +74,40 @@ namespace ScrumManager.Controllers
         }
 
         /// <summary>
+        /// Add
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async System.Threading.Tasks.Task<JsonResult> Add([FromBody]Sprint obj)
+        {
+            try
+            {
+                // Add other properties
+                obj.CompanyId = 1;
+                obj.ObjectId = Guid.NewGuid();
+                obj.Created = DateTime.Now;
+                obj.Modified = DateTime.Now;
+                obj.CreatorId = 1;
+                obj.ModifierId = 1;
+
+                obj = await apiClient.PostObject(obj, url, ApiHttpMethod.POST);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Json(obj);
+        }
+
+        /// <summary>
         /// Update
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         [HttpPost]
-        public async System.Threading.Tasks.Task<JsonResult> Update(Sprint obj)
+        public async System.Threading.Tasks.Task<JsonResult> Update([FromBody]Sprint obj)
         {
             try
             {
@@ -99,7 +127,7 @@ namespace ScrumManager.Controllers
         /// <param name="obj"></param>
         /// <returns></returns>
         [HttpDelete]
-        public async System.Threading.Tasks.Task<JsonResult> Delete(Sprint obj)
+        public async System.Threading.Tasks.Task<JsonResult> Delete([FromBody]Sprint obj)
         {
             try
             {

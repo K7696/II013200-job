@@ -10,7 +10,7 @@ using CoreBusinessObjects;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/{companyId}")]
     public class SprintsController : Controller
     {
         #region Fields
@@ -47,6 +47,10 @@ namespace api.Controllers
                           {
                               SprintId = sprints.SprintId,
                               CompanyId = sprints.CompanyId,
+                              ProjectId = sprints.ProjectId,
+                              ObjectId = sprints.ObjectId,
+                              CreatorId = sprints.CreatorId,
+                              ModifierId = sprints.ModifierId,
                               ShortCode = sprints.ShortCode,
                               Name = sprints.Name,
                               StartDate = sprints.StartDate,
@@ -75,6 +79,10 @@ namespace api.Controllers
                          {
                              SprintId = sprints.SprintId,
                              CompanyId = sprints.CompanyId,
+                             ProjectId = sprints.ProjectId,
+                             ObjectId = sprints.ObjectId,
+                             CreatorId = sprints.CreatorId,
+                             ModifierId = sprints.ModifierId,
                              ShortCode = sprints.ShortCode,
                              Name = sprints.Name,
                              StartDate = sprints.StartDate,
@@ -215,7 +223,7 @@ namespace api.Controllers
                     return NotFound();
 
                 mapSprintUpdate(result, value);
-
+                context.Sprints.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getSprint(companyId, sprintId)

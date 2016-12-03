@@ -216,7 +216,7 @@ namespace api.Controllers
 
                 // Map person properties
                 mapProjectUpdate(result, value);
-
+                context.Projects.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getProject(companyId, projectId)

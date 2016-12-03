@@ -207,7 +207,7 @@ namespace api.Controllers
                     return NotFound();
 
                 mapCustomerUpdate(result, value);
-
+                context.Customers.Update(result);
                 context.SaveChanges();
 
                 var updatedResult = getCustomer(companyId, customerId)
