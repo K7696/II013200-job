@@ -12,8 +12,11 @@ namespace api
     {
         public static void Main(string[] args)
         {
+            Console.Title = "API";
+
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .UseUrls("http://localhost:50002")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()

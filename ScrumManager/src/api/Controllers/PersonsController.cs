@@ -143,7 +143,7 @@ namespace api.Controllers
             person.Description = value.Description;
             person.ShortCode = value.ShortCode;
             person.Email = value.Email;
-            person.Password = value.Password;
+            // person.Password = value.Password;
             person.Name = value.Name;
             person.Phonenumber = value.Phonenumber;
             person.Modified = DateTime.Now;

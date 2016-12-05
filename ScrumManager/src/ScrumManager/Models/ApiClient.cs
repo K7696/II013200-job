@@ -107,14 +107,6 @@ namespace ScrumManager.Models
                 }
             }
 
-            /*using (var client = new WebClient())
-            {
-                client.Encoding = Encoding.UTF8;
-                var json = client.DownloadString(url);
-                //var serializer = new JavaScriptSerializer();
-                item = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
-            }*/
-
             return item;
         }
 

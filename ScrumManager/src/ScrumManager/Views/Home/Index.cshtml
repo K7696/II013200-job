@@ -4,13 +4,24 @@
 
 <div class="container">
    <div class="col-md-4">
-       <a href="">Oma työpöytä</a>
-        <br/>
-       <a href="">Omat tiedot</a>
-       <br />
-       <a href=""></a>
    </div>
    <div class="col-md-8">
-       kaksi
+     <br/>
+@using (Html.BeginForm())
+{
+       <table>
+         <tr>
+           <td>Username:</td>
+           <td><input type="text" name="username" /></td>
+         </tr>
+         <tr>
+           <td>Password:</td>
+           <td>
+              <input type="password" name="password" />
+             <input type="submit" value="Sign in" />
+           </td>
+         </tr>
+       </table>
+}
    </div>
 </div>

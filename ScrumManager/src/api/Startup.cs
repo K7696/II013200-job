@@ -48,14 +48,15 @@ namespace api
             services.AddApplicationInsightsTelemetry(Configuration);
 
             // HUOMIO: lisätty tämä, että ei tule virhettä Self referencing loop detected for property
-            services.AddMvc(options =>
+            services.AddMvcCore(options =>
             {
                 options.OutputFormatters.Clear();
                 options.OutputFormatters.Add(new JsonOutputFormatter(new JsonSerializerSettings()
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 }, ArrayPool<char>.Shared));
-            });
+            })
+            .AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -67,6 +68,15 @@ namespace api
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
+
+            // Huomio: lisätty käsin
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://localhost:5000",
+                AllowedScopes = { "api1" },
+
+                RequireHttpsMetadata = false
+            });
 
             app.UseMvc();
 

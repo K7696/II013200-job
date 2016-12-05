@@ -14,6 +14,7 @@
 --version:1.0.0.0
 --informational-version:1.0.0
 --target-framework:.NETFramework,Version=v4.5.2
+--reference:C:\Users\maikku\.nuget\packages\IdentityModel\2.0.0\lib\net45\IdentityModel.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.ApplicationInsights\2.1.0\lib\net45\Microsoft.ApplicationInsights.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.ApplicationInsights.Agent.Intercept\1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.ApplicationInsights.AspNetCore\1.0.0\lib\net451\Microsoft.ApplicationInsights.AspNetCore.dll
@@ -22,6 +23,9 @@
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel\2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNet.WebApi.Client\5.2.3\lib\net45\System.Net.Http.Formatting.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.1\lib\net451\Microsoft.AspNetCore.Antiforgery.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Authentication\1.0.0\lib\net451\Microsoft.AspNetCore.Authentication.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Authentication.Cookies\1.0.0\lib\net451\Microsoft.AspNetCore.Authentication.Cookies.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Authentication.OpenIdConnect\1.0.0\lib\net451\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Authorization\1.0.0\lib\net451\Microsoft.AspNetCore.Authorization.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Cors\1.0.0\lib\net451\Microsoft.AspNetCore.Cors.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.AspNetCore.Cryptography.Internal\1.0.0\lib\net451\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -97,6 +101,10 @@
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.Extensions.PlatformAbstractions\1.0.0\lib\net451\Microsoft.Extensions.PlatformAbstractions.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.Extensions.Primitives\1.0.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.Extensions.WebEncoders\1.0.0\lib\netstandard1.0\Microsoft.Extensions.WebEncoders.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.IdentityModel.Logging\1.0.0\lib\net451\Microsoft.IdentityModel.Logging.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.IdentityModel.Protocols\2.0.0\lib\net451\Microsoft.IdentityModel.Protocols.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect\2.0.0\lib\net451\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+--reference:C:\Users\maikku\.nuget\packages\Microsoft.IdentityModel.Tokens\5.0.0\lib\net451\Microsoft.IdentityModel.Tokens.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.Net.Http.Headers\1.0.0\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll
 --reference:C:\Users\maikku\.nuget\packages\Microsoft.VisualStudio.Web.BrowserLink.Loader\14.0.0\lib\net451\Microsoft.VisualStudio.Web.BrowserLink.Loader.dll
 --reference:C:\Users\maikku\.nuget\packages\Newtonsoft.Json\9.0.1\lib\net45\Newtonsoft.Json.dll
@@ -126,6 +134,7 @@
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Diagnostics.Debug.dll
 --reference:C:\Users\maikku\.nuget\packages\System.Diagnostics.DiagnosticSource\4.0.0\lib\portable-net45+win8+wpa81\System.Diagnostics.DiagnosticSource.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Globalization.dll
+--reference:C:\Users\maikku\.nuget\packages\System.IdentityModel.Tokens.Jwt\5.0.0\lib\net451\System.IdentityModel.Tokens.Jwt.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.IO.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Linq.dll
 --reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Facades\System.Linq.Expressions.dll

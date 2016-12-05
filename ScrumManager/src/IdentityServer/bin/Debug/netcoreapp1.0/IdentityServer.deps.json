@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "3523012de235b59c4b5c70318d8278cbc1122e7b"
+    "signature": "8307a3aeb8ea16e8e2c2dafe2e33a577740f2805"
   },
   "compilationOptions": {
     "defines": [
@@ -21,7 +21,7 @@
           "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
           "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
           "Microsoft.Extensions.Logging.Console": "1.0.0",
-          "IdentityServer4": "1.0.0-rc1-update2"
+          "IdentityServer4": "1.0.0-rc4-update1"
         },
         "runtime": {
           "IdentityServer.dll": {}
@@ -30,7 +30,7 @@
           "IdentityServer.dll": {}
         }
       },
-      "IdentityModel/2.0.0-rc3": {
+      "IdentityModel/2.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
           "System.Net.Http": "4.1.0",
@@ -45,13 +45,14 @@
           "lib/netstandard1.3/IdentityModel.dll": {}
         }
       },
-      "IdentityServer4/1.0.0-rc1-update2": {
+      "IdentityServer4/1.0.0-rc4-update1": {
         "dependencies": {
-          "IdentityModel": "2.0.0-rc3",
+          "IdentityModel": "2.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
           "Microsoft.AspNetCore.Cors": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
           "Microsoft.Extensions.Caching.Abstractions": "1.0.0",
+          "Microsoft.Extensions.Caching.Memory": "1.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
           "System.Collections.Specialized": "4.0.1",
@@ -406,6 +407,21 @@
         },
         "compile": {
           "lib/netstandard1.0/Microsoft.Extensions.Caching.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Caching.Memory/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
+          "Microsoft.Extensions.Options": "1.0.0",
+          "System.Linq": "4.1.0",
+          "System.Threading": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.Extensions.Caching.Memory.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration/1.0.0": {
@@ -2530,15 +2546,15 @@
       "serviceable": false,
       "sha512": ""
     },
-    "IdentityModel/2.0.0-rc3": {
+    "IdentityModel/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-YY+QJEQ4FPM8DcdGAD+dcrGX9Xohn1QI8Z2Uwp4l/dnfCFzvclR1pHQdo2/gcCnsQB+hILHPxbCbFB4+bbJRTA=="
+      "sha512": "sha512-c5+zB+ADJ7QB2LC4tE5p4ESMHfR8HCBOD/LOjkNUiEh4AtbBgcZHYMKbBw/+rS5QyXNmMT0c+IMF1xb49XcYlQ=="
     },
-    "IdentityServer4/1.0.0-rc1-update2": {
+    "IdentityServer4/1.0.0-rc4-update1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gS98yam0Xup8XsnVU2ZCJf/x347TcENs/wiatJpclPWvjKEpNebttrQ/swNeHGMqxaX50cb6ikhIGllZeRLThg=="
+      "sha512": "sha512-alEyFDjuix3tELackfGAvpYR1gbMlwrjymBJ/gCHuR5iWMl/TNyuuv7L6HzDwlKfPkpTNCpC0c+fVYbJ/jHfCQ=="
     },
     "Microsoft.AspNetCore.Authentication/1.0.0": {
       "type": "package",
@@ -2639,6 +2655,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-IxlFDVOchL6tdR05bk7EiJvMtvZrVkZXBhkbXqc3GxOHOrHFGcN+92WoWFPeBpdpy8ot/Px5ZdXzt7k+2n1Bdg=="
+    },
+    "Microsoft.Extensions.Caching.Memory/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6+7zTufCnZ+tfrUo7RbIRR3LB0BxwOwxfXuo0IbLyIvgoToGpWuz5wYEDfCYNOvpig9tY8FA0I1uRHYmITMXMQ=="
     },
     "Microsoft.Extensions.Configuration/1.0.0": {
       "type": "package",
